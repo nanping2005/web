@@ -56,7 +56,7 @@
                 max-width: 1200px;
                 margin: 0 auto;
                 padding: 0 20px;
-				padding-bottom: 300px;
+				padding-bottom: 150px;
             }
     
             .experiments-grid {
@@ -103,13 +103,14 @@
                 color: #66A0DC;
                 transform: translateX(5px); /* 保留hover位移效果 */
             }
+			
+
 			footer {
-			            position: fixed;   /* 固定定位 */
-			            bottom: 0;         /* 距离底部0像素 */
-			            width: 100%;       /* 宽度占满整个页面 */
-			            background-color: #f0f0f0; /* 背景色，可选 */
-			            padding: 10px 0;   /* 内边距，可选 */
-			        }
+			width: 100%;      
+			background-color: #f0f0f0; 
+			padding: 10px 0;   
+			border-top: 1px solid #ddd;
+			}
     </style>
 </head>
 <body>
@@ -190,28 +191,32 @@
             </div>
         </div>
     </div>
-	  <footer>
-	        <table width=100% border="0"  cellspacing="30" align="center">	          
-	               <tr>
-	                <td align="right" valign="top"  width=50% >
-	                    <h3>与我联系</h3>
-	                </td>
-	                <td>
-						<h3>版权信息</h3>
-					</td>
-	               <tr>
-	                <td align="right" valign="top" width=50%>
-						<p>我的邮箱</p>
-	                    <p>我的微博</p>
-	                    <p>我的 bilibili 频道</p>
-	                    <p>捐助我</p>
-	                </td>
-	            <td>
-					<p>© 20230106105 陈韬</p>
-				</td>
-	        </table>
-
-	    </footer>
+<footer class="bg-white border-t border-gray-200 py-3 px-4 md:px-6 mt-6">
+  <div class="container mx-auto text-center text-sm text-gray-500">
+    <table width="100%" border="0" cellspacing="30" align="center">
+      <tr>
+        <td align="right" valign="top" width="50%">
+          <h3>与我联系</h3>
+        </td>
+        <td>
+          <h3>版权信息</h3>
+        </td>
+      </tr>
+      <tr>
+        <td align="right" valign="top" width="50%">
+          <p><a href="mailto:2011465544@qq.com" class="nav-link">我的邮箱</a></p>
+          <p>我的微博</p>
+          <p>我的 bilibili 频道</p>
+          <p>捐助我</p>
+        </td>
+        <td valign="top">
+          <p>© 20230106105 陈韬</p>
+		  <p><a href="https://nanping20.fun" class="experiment-link">目前使用域名</a></p>
+        </td>
+      </tr>
+    </table>
+  </div>
+</footer>
 </body>
 </html>
     
