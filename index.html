@@ -1,223 +1,242 @@
 <!DOCTYPE html>
 <html>
+
 <head>
-    <meta charset="utf-8" />
-    <title>实验列表页面</title>
-     <style>
-            /* 全局样式重置 */
-            * {
-                margin: 0;
-                padding: 0;
-                box-sizing: border-box;
-            }
-    
-            /* 导航栏样式 - 保留原有设计 */
-            .navbar {
-                background-color: white;
-                box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-                padding: 15px 30px;
-                height: 80px;
-                margin-bottom: 0px;
-            }
-    
-            .container {
-                max-width: 1200px;
-                margin: 0 auto;
-                display: flex;
-                justify-content: space-between;
-                align-items: center;
-                height: 100%;
-            }
-    
-            .logo {
-                font-size: 24px;
-                font-weight: bold;
-                color: #333;
-            }
-    
-            .nav-links {
-                display: flex;
-                gap: 25px;
-            }
-    
-            .nav-link {
-                color: #333;
-                text-decoration: none;
-                font-size: 16px;
-                transition: color 0.3s;
-            }
-    
-            .nav-link:hover {
-                color: #66A0DC;
-            }
-    
-            /* 内容区容器 - 保留四栏布局，去除卡片样式 */
-            .content-container {
-                max-width: 1200px;
-                margin: 0 auto;
-                padding: 0 20px;
-				padding-bottom: 150px;
-            }
-    
-            .experiments-grid {
-                display: grid;
-                grid-template-columns: repeat(4, 1fr); /* 保持四栏结构 */
-                gap: 40px; /* 增大列间距，提升简洁感 */
-            }
-    
-            /* 实验列样式 - 完全去除卡片相关样式 */
-            .experiment-column {
-                padding: 0; /* 移除原卡片内边距 */
-            }
-    
-            /* 列标题样式 - 优化为简洁标题 */
-            .column-title {
-                text-align: left; /* 改为左对齐，更符合线性布局 */
-                margin-bottom: 18px;
-                padding-bottom: 8px;
-                border-bottom: 2px solid #eee; /* 细边框分隔标题与内容 */
-                color: #222;
-                font-size: 18px;
-                font-weight: 600;
-            }
-    
-            /* 实验列表样式 - 保持基础列表结构 */
-            .experiment-list {
-                list-style: none;
-            }
-    
-            .experiment-item {
-                margin-bottom: 12px; /* 调整列表项间距 */
-            }
-    
-            /* 链接样式优化 - 保留hover交互效果 */
-            .experiment-link {
-                color: #333;
-                text-decoration: none;
-                font-size: 16px;
-                transition: all 0.3s;
-                display: inline-block;
-            }
-    
-            .experiment-link:hover {
-                color: #66A0DC;
-                transform: translateX(5px); /* 保留hover位移效果 */
-            }
-			
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>实验列表页面</title>
+  <style>
+    /* 全局样式重置 */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
 
-			footer {
-			width: 100%;      
-			background-color: #f0f0f0; 
-			padding: 10px 0;   
-			border-top: 1px solid #ddd;
-			}
-    </style>
+    /* 页面整体使用flex布局，让页脚能置底 */
+    body {
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
+
+    .content-wrapper {
+      flex: 1;
+    }
+
+    /* 导航栏样式 - 保留原有设计 */
+    .navbar {
+      background-color: white;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+      padding: 15px 30px;
+      height: 80px;
+      margin-bottom: 0px;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      height: 100%;
+    }
+
+    .logo {
+      font-size: 24px;
+      font-weight: bold;
+      color: #333;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 25px;
+    }
+
+    .nav-link {
+      color: #333;
+      text-decoration: none;
+      font-size: 16px;
+      transition: color 0.3s;
+    }
+
+    .nav-link:hover {
+      color: #66A0DC;
+    }
+
+    /* 内容区容器 - 保留四栏布局，去除卡片样式 */
+    .content-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 20px;
+      padding-bottom: 150px;
+    }
+
+    .experiments-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      /* 保持四栏结构 */
+      gap: 40px;
+      /* 增大列间距，提升简洁感 */
+    }
+
+    /* 实验列样式 - 完全去除卡片相关样式 */
+    .experiment-column {
+      padding: 0;
+      /* 移除原卡片内边距 */
+    }
+
+    /* 列标题样式 - 优化为简洁标题 */
+    .column-title {
+      text-align: left;
+      /* 改为左对齐，更符合线性布局 */
+      margin-bottom: 18px;
+      padding-bottom: 8px;
+      border-bottom: 2px solid #eee;
+      /* 细边框分隔标题与内容 */
+      color: #222;
+      font-size: 18px;
+      font-weight: 600;
+    }
+
+    /* 实验列表样式 - 保持基础列表结构 */
+    .experiment-list {
+      list-style: none;
+    }
+
+    .experiment-item {
+      margin-bottom: 12px;
+      /* 调整列表项间距 */
+    }
+
+    /* 链接样式优化 - 保留hover交互效果 */
+    .experiment-link {
+      color: #333;
+      text-decoration: none;
+      font-size: 16px;
+      transition: all 0.3s;
+      display: inline-block;
+    }
+
+    .experiment-link:hover {
+      color: #66A0DC;
+      transform: translateX(5px);
+      /* 保留hover位移效果 */
+    }
+
+    footer {
+      width: 100%;
+      background-color: #f0f0f0;
+      padding: 10px 0;
+      border-top: 1px solid #ddd;
+    }
+  </style>
 </head>
+
 <body>
-	
-     <nav class="navbar">
-            <div class="container">
-                <div class="logo">web实验平台</div>
-                <div class="nav-links">
-                    <a href="#" class="nav-link"></a>
-                    <a href="#sy" class="nav-link">实验列表</a>
-                    <a href="#" class="nav-link">资源下载</a>
-                    <a href="mailto:2011465544@qq.com" class="nav-link">联系我们</a>
-                </div>
-            </div>
-        </nav>
-<img src="https://bing.shangzhenyang.com/api/1080p" width=100%>
-<br><br>
-<h1 align="center"><a name="sy">实验列表</a></h1>
-<br>
-<hr width=75% style="margin: auto;margin-bottom: 20px;">
- <div class="content-container">
-         <div class="experiments-grid">
-             <!-- 第一列 -->
-             <div class="experiment-column">
-                 <h5 class="column-title">9.11</h5>
-                 <ul class="experiment-list">
-                     <li class="experiment-item"><a href="911/index.html" class="experiment-link">字体定时跳转</a></li>
-                     <li class="experiment-item"><a href="911/index2.html" class="experiment-link">图片背景</a></li>      
-                 </ul>
-             </div>
-    <div class="experiment-column">
-                    <h5 class="column-title">9.19</h5>
-                      <ul class="experiment-list">
-                     <li class="experiment-item"><a href="912/index.html" class="experiment-link">基本标签</a></li>
-                     <li class="experiment-item"><a href="912/index2.html" class="experiment-link">文本格式化</a></li>
-                    
-                  </ul>
-             </div>
-        <div class="experiment-column">
-                <h5 class="column-title">9.18</h5>
-                <ul class="experiment-list">
-                    <li class="experiment-item"><a href="9.18/hmtl11.html" class="experiment-link">一个简单的超链接</a></li>
-                    <li class="experiment-item"><a href="9.18/html12.html" class="experiment-link">锚点链接制作</a></li>
-                    <li class="experiment-item"><a href="9.18/html13.html" class="experiment-link">几种超链接的综合应用</a></li>
-                    <li class="experiment-item"><a href="9.18/html14.html" class="experiment-link">在HTML文件里跳转</a></li>
-                    <li class="experiment-item"><a href="9.18/html15.html" class="experiment-link">综合链接操作</a></li>
-                    <li class="experiment-item"><a href="9.18/html16.html" class="experiment-link">课本第3章课堂练习</a></li>
-                    <li class="experiment-item"><a href="9.18/html17.html" class="experiment-link">简单有序列表</a></li>
-                    <li class="experiment-item"><a href="9.18/html18.html" class="experiment-link">列表序号</a></li>
-                    <li class="experiment-item"><a href="9.18/html19.html" class="experiment-link">列表起始数值start</a></li>
-                    <li class="experiment-item"><a href="9.18/html20.html" class="experiment-link">无序列表</a></li>
-                    <li class="experiment-item"><a href="9.18/html21.html" class="experiment-link">列表的嵌套</a></li>
-                </ul>
-            </div>
-
-            <!-- 第四列 -->
-            <div class="experiment-column">
-                <h5 class="column-title">9.19</h5>
-                <ul class="experiment-list">
-                    <li class="experiment-item"><a href="9.19/html21.html" class="experiment-link">各种图片的使用</a></li>
-                    <li class="experiment-item"><a href="9.19/html22.html" class="experiment-link">图像的提示文字alt的使用</a></li>
-                    <li class="experiment-item"><a href="9.19/html23.html" class="experiment-link">图像的宽度和高度width、height</a></li>
-                    <li class="experiment-item"><a href="9.19/html24.html" class="experiment-link">图像的边框border练习</a></li>
-                    <li class="experiment-item"><a href="9.19/html25.html" class="experiment-link">图像的垂直,水平边距</a></li>
-                    <li class="experiment-item"><a href="9.19/html26.html" class="experiment-link">图像的排列align属性</a></li>
-                    <li class="experiment-item"><a href="9.19/html27.html" class="experiment-link">通过在标签中使用clear属性</a></li>
-                    <li class="experiment-item"><a href="9.19/html28.html" class="experiment-link">底部三超链接</a></li>
-                    <li class="experiment-item"><a href="9.19/html29.html" class="experiment-link">图像热区链接练习</a></li>
-                    <li class="experiment-item"><a href="9.19/html210.html" class="experiment-link">三个热区应使用不同形状区域</a></li>
-                    <li class="experiment-item"><a href="9.19/html211.html" class="experiment-link">图形应用综合实例</a></li>
-                    <li class="experiment-item"><a href="9.19/html212.html" class="experiment-link">简单表格创建</a></li>
-                    <li class="experiment-item"><a href="9.19/html213.html" class="experiment-link">表格标题、表头练习</a></li>
-                    <li class="experiment-item"><a href="9.19/html214.html" class="experiment-link">border属性对表格进行修饰</a></li>
-                    <li class="experiment-item"><a href="9.19/html215.html" class="experiment-link">横竖转换</a></li>
-                    <li class="experiment-item"><a href="9.19/html216.html" class="experiment-link">表框分割线</a></li>
-                    <li class="experiment-item"><a href="9.19/html217.html" class="experiment-link">表格小综合实例</a></li>
-                </ul>
-            </div>
+  <div class="content-wrapper">
+    <nav class="navbar">
+      <div class="container">
+        <div class="logo">web实验平台</div>
+        <div class="nav-links">
+          <a href="#" class="nav-link"></a>
+          <a href="#sy" class="nav-link">实验列表</a>
+          <a href="#" class="nav-link">资源下载</a>
+          <a href="mailto:2011465544@qq.com" class="nav-link">联系我们</a>
         </div>
-    </div>
-<footer class="bg-white border-t border-gray-200 py-3 px-4 md:px-6 mt-6">
-  <div class="container mx-auto text-center text-sm text-gray-500">
-    <table width="100%" border="0" cellspacing="30" align="center">
-      <tr>
-        <td align="right" valign="top" width="50%">
-          <h3>与我联系</h3>
-        </td>
-        <td>
-          <h3>版权信息</h3>
-        </td>
-      </tr>
-      <tr>
-        <td align="right" valign="top" width="50%">
-          <p><a href="mailto:2011465544@qq.com" class="nav-link">我的邮箱</a></p>
-          <p>我的微博</p>
-          <p>我的 bilibili 频道</p>
-          <p>捐助我</p>
-        </td>
-        <td valign="top">
-          <p>© 20230106105 陈韬</p>
-		  <p><a href="https://nanping20.fun" class="experiment-link">目前使用域名</a></p>
-        </td>
-      </tr>
-    </table>
-  </div>
-</footer>
-</body>
-</html>
-    
+      </div>
+    </nav>
+    <img src="https://bing.shangzhenyang.com/api/1080p" width="100%">
+    <br><br>
+    <h1 align="center"><a name="sy">实验列表</a></h1>
+    <br>
+    <hr width="75%" style="margin: auto;margin-bottom: 20px;">
+    <div class="content-container">
+      <div class="experiments-grid">
+        <!-- 第一列 -->
+        <div class="experiment-column">
+          <h5 class="column-title">9.11</h5>
+          <ul class="experiment-list">
+            <li class="experiment-item"><a href="911/index.html" class="experiment-link">字体定时跳转</a></li>
+            <li class="experiment-item"><a href="911/index2.html" class="experiment-link">图片背景</a></li>
+          </ul>
+        </div>
+        <div class="experiment-column">
+          <h5 class="column-title">9.19</h5>
+          <ul class="experiment-list">
+            <li class="experiment-item"><a href="912/index.html" class="experiment-link">基本标签</a></li>
+            <li class="experiment-item"><a href="912/index2.html" class="experiment-link">文本格式化</a></li>
+          </ul>
+        </div>
+        <div class="experiment-column">
+          <h5 class="column-title">9.18</h5>
+          <ul class="experiment-list">
+            <li class="experiment-item"><a href="9.18/hmtl11.html" class="experiment-link">一个简单的超链接</a></li>
+            <li class="experiment-item"><a href="9.18/html12.html" class="experiment-link">锚点链接制作</a></li>
+            <li class="experiment-item"><a href="9.18/html13.html" class="experiment-link">几种超链接的综合应用</a></li>
+            <li class="experiment-item"><a href="9.18/html14.html" class="experiment-link">在HTML文件里跳转</a></li>
+            <li class="experiment-item"><a href="9.18/html15.html" class="experiment-link">综合链接操作</a></li>
+            <li class="experiment-item"><a href="9.18/html16.html" class="experiment-link">课本第3章课堂练习</a></li>
+            <li class="experiment-item"><a href="9.18/html17.html" class="experiment-link">简单有序列表</a></li>
+            <li class="experiment-item"><a href="9.18/html18.html" class="experiment-link">列表序号</a></li>
+            <li class="experiment-item"><a href="9.18/html19.html" class="experiment-link">列表起始数值start</a></li>
+            <li class="experiment-item"><a href="9.18/html20.html" class="experiment-link">无序列表</a></li>
+            <li class="experiment-item"><a href="9.18/html21.html" class="experiment-link">列表的嵌套</a></li>
+          </ul>
+        </div>
 
+        <!-- 第四列 -->
+        <div class="experiment-column">
+          <h5 class="column-title">9.19</h5>
+          <ul class="experiment-list">
+            <li class="experiment-item"><a href="9.19/html21.html" class="experiment-link">各种图片的使用</a></li>
+            <li class="experiment-item"><a href="9.19/html22.html" class="experiment-link">图像的提示文字alt的使用</a></li>
+            <li class="experiment-item"><a href="9.19/html23.html" class="experiment-link">图像的宽度和高度width、height</a></li>
+            <li class="experiment-item"><a href="9.19/html24.html" class="experiment-link">图像的边框border练习</a></li>
+            <li class="experiment-item"><a href="9.19/html25.html" class="experiment-link">图像的垂直,水平边距</a></li>
+            <li class="experiment-item"><a href="9.19/html26.html" class="experiment-link">图像的排列align属性</a></li>
+            <li class="experiment-item"><a href="9.19/html27.html" class="experiment-link">通过在标签中使用clear属性</a></li>
+            <li class="experiment-item"><a href="9.19/html28.html" class="experiment-link">底部三超链接</a></li>
+            <li class="experiment-item"><a href="9.19/html29.html" class="experiment-link">图像热区链接练习</a></li>
+            <li class="experiment-item"><a href="9.19/html210.html" class="experiment-link">三个热区应使用不同形状区域</a></li>
+            <li class="experiment-item"><a href="9.19/html211.html" class="experiment-link">图形应用综合实例</a></li>
+            <li class="experiment-item"><a href="9.19/html212.html" class="experiment-link">简单表格创建</a></li>
+            <li class="experiment-item"><a href="9.19/html213.html" class="experiment-link">表格标题、表头练习</a></li>
+            <li class="experiment-item"><a href="9.19/html214.html" class="experiment-link">border属性对表格进行修饰</a></li>
+            <li class="experiment-item"><a href="9.19/html215.html" class="experiment-link">横竖转换</a></li>
+            <li class="experiment-item"><a href="9.19/html216.html" class="experiment-link">表框分割线</a></li>
+            <li class="experiment-item"><a href="9.19/html217.html" class="experiment-link">表格小综合实例</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+  <footer class="bg-white border-t border-gray-200 py-3 px-4 md:px-6 mt-6">
+    <div class="container mx-auto text-center text-sm text-gray-500">
+      <table width="100%" border="0" cellspacing="30" align="center">
+        <tr>
+          <td align="right" valign="top" width="50%">
+            <h3>与我联系</h3>
+          </td>
+          <td>
+            <h3>版权信息</h3>
+          </td>
+        </tr>
+        <tr>
+          <td align="right" valign="top" width="50%">
+            <p><a href="mailto:2011465544@qq.com" class="nav-link">我的邮箱</a></p>
+            <p>我的微博</p>
+            <p>我的 bilibili 频道</p>
+            <p>捐助我</p>
+          </td>
+          <td valign="top">
+            <p>© 20230106105 陈韬</p>
+            <p><a href="https://nanping20.fun" class="experiment-link">目前使用域名</a></p>
+          </td>
+        </tr>
+      </table>
+    </div>
+  </footer>
+</body>
+
+</html>
