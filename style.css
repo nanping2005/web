@@ -1,0 +1,472 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap");
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Inter", sans-serif;
+  overflow-x: hidden;
+  background-color: #000;
+  color: #fff;
+}
+
+img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+h1 {
+  color: #fff;
+  font-size: 5rem;
+  font-weight: 400;
+  letter-spacing: -0.1rem;
+  line-height: 1.2;
+}
+
+h2 {
+  color: #fff;
+  font-size: 3rem;
+  font-weight: 400;
+  letter-spacing: -0.05rem;
+  margin-bottom: 2rem;
+}
+
+a,
+p {
+  position: relative;
+  text-decoration: none;
+  color: #797979;
+  font-size: 1rem;
+  font-weight: 300;
+  user-select: none;
+}
+
+nav {
+  position: fixed;
+  width: 100vw;
+  padding: 2.5em;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  z-index: 2;
+}
+
+.logo a {
+  font-weight: 600;
+  font-size: 1.2rem;
+}
+
+.menu-toggle {
+  position: relative;
+  width: 4rem;
+  height: 1.5rem;
+  cursor: pointer;
+}
+
+.menu-toggle p {
+  position: absolute;
+  transform-origin: top left;
+  will-change: transform, opacity;
+}
+
+.menu-overlay {
+  position: fixed;
+  width: 100vw;
+  height: 100svh;
+  background-color: black;
+  z-index: 1;
+}
+
+.menu-content {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transform-origin: left bottom;
+  will-change: transform, opacity;
+}
+
+.menu-items,
+.menu-footer {
+  width: 100%;
+  padding: 2.5em;
+  display: flex;
+  gap: 2.5em;
+}
+
+.col-lg {
+  flex: 3;
+}
+
+.col-sm {
+  flex: 2;
+}
+
+.menu-items .col-lg {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.menu-preview-img {
+  position: relative;
+  width: 45%;
+  height: 100%;
+  overflow: hidden;
+}
+
+.menu-preview-img img {
+  position: absolute;
+  will-change: transform, opacity;
+}
+
+.menu-items .col-sm {
+  padding: 2.5em 0;
+  display: flex;
+  flex-direction: column;
+  gap: 2.5em;
+}
+
+.menu-links,
+.menu-socials {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5em;
+}
+
+.link a,
+.social a {
+  display: inline-block;
+  will-change: transform;
+  transition: color 0.5s;
+}
+
+.link a {
+  font-size: 3.5rem;
+  letter-spacing: -0.02rem;
+}
+
+.social a {
+  color: #8f8f8f;
+}
+
+.social a:hover {
+  color: #fff;
+}
+
+.menu-footer {
+  position: absolute;
+  bottom: 0;
+}
+
+.menu-footer .col-sm {
+  display: flex;
+  justify-content: space-between;
+}
+
+.link a::after,
+.social a::after,
+.menu-footer a::after {
+  position: absolute;
+  content: "";
+  top: 102.5%;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background-color: #fff;
+  transform: scaleX(0);
+  transform-origin: right;
+  transition: transform 0.3s cubic-bezier(0.6, 0, 0.4, 1);
+}
+
+.link a:hover::after,
+.social a:hover::after,
+.menu-footer a:hover::after {
+  transform: scaleX(1);
+  transform-origin: left;
+}
+
+.container {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  will-change: transform;
+  transform-origin: right top;
+}
+
+.hero {
+  position: relative;
+  width: 100vw;
+  height: 100svh;
+  padding: 2.5em;
+  display: flex;
+  align-items: flex-end;
+  overflow: hidden;
+}
+
+.hero-img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100svh;
+  z-index: -1;
+}
+
+.hero h1 {
+  width: 80%;
+  padding-bottom: 2em;
+}
+
+.content-section {
+  min-height: 100vh;
+  padding: 6em 2.5em 2.5em;
+  background-color: #000;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+}
+
+/* 实验卡片容器 */
+.experiments-card {
+  width: 100%;
+  max-width: 1000px;
+  background-color: #f8f8f8;
+  border-radius: 12px;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
+  padding: 0;
+  overflow: hidden;
+}
+
+/* 标签导航 */
+.tabs-nav {
+  display: flex;
+  padding: 0;
+  background-color: transparent;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+  overflow-x: auto;
+}
+
+.tab-btn {
+  padding: 1em 1.5em;
+  border: none;
+  background-color: transparent;
+  color: #666;
+  font-size: 0.95rem;
+  font-weight: 400;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  white-space: nowrap;
+  position: relative;
+  border-radius: 8px 8px 0 0;
+  margin-right: 0.25em;
+}
+
+.tab-btn:first-child {
+  margin-left: 0.5em;
+}
+
+.tab-btn.active {
+  background-color: #ffffff;
+  color: #333;
+  font-weight: 600;
+}
+
+.tab-btn:hover:not(.active) {
+  background-color: rgba(0, 0, 0, 0.02);
+}
+
+/* 实验列表 */
+.experiments-list {
+  padding: 1em 0;
+  max-height: 600px;
+  overflow-y: auto;
+}
+
+/* 自定义滚动条样式 */
+.experiments-list::-webkit-scrollbar {
+  width: 6px;
+}
+
+.experiments-list::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.experiments-list::-webkit-scrollbar-thumb {
+  background: #ccc;
+  border-radius: 3px;
+}
+
+.experiments-list::-webkit-scrollbar-thumb:hover {
+  background: #aaa;
+}
+
+.experiment-entry {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1em 1.5em;
+  margin: 0.25em 0.5em;
+  background-color: #ffffff;
+  border-radius: 6px;
+  transition: background-color 0.2s ease;
+}
+
+.experiment-entry:hover {
+  background-color: #fafafa;
+}
+
+.experiment-title {
+  color: #333333;
+  text-decoration: none;
+  font-size: 1rem;
+  font-weight: 400;
+  flex: 1;
+  transition: color 0.2s ease;
+}
+
+.experiment-title:hover {
+  color: #000;
+}
+
+.experiment-date {
+  color: #999999;
+  font-size: 0.9rem;
+  font-weight: 300;
+  margin-left: 1.5em;
+  white-space: nowrap;
+}
+
+/* 查看更多按钮 */
+.view-more-container {
+  display: flex;
+  justify-content: flex-end;
+  padding: 1.5em;
+  border-top: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.view-more-btn {
+  padding: 0.6em 1.5em;
+  background-color: #eeeeee;
+  border: none;
+  border-radius: 6px;
+  color: #333;
+  font-size: 0.9rem;
+  font-weight: 400;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.view-more-btn:hover {
+  background-color: #e0e0e0;
+  transform: translateY(-1px);
+}
+
+.menu-toggle p#menu-close {
+  opacity: 0;
+  transform: translateX(-5px) translateY(10px) rotate(5deg);
+}
+
+.link a,
+.social a {
+  transform: translateY(120%);
+  opacity: 0.25;
+}
+
+.menu-content {
+  transform: translateX(-100px) translateY(-100px) scale(1.5) rotate(-15deg);
+  opacity: 0.25;
+}
+
+.menu-overlay {
+  clip-path: polygon(0% 0%, 100% 0%, 100% 0%, 0% 0%);
+}
+
+@media (max-width: 900px) {
+  .hero h1 {
+    width: 100%;
+    font-size: 3rem;
+    letter-spacing: 0;
+  }
+
+  h2 {
+    font-size: 2rem;
+  }
+
+  .menu-items .col-lg {
+    display: none;
+  }
+
+  .link a::after,
+  .social a::after,
+  .menu-footer a::after {
+    display: none;
+  }
+
+  .content-section {
+    padding: 4em 1em 2em;
+  }
+
+  .experiments-card {
+    border-radius: 8px;
+  }
+
+  .tab-btn {
+    padding: 0.8em 1.2em;
+    font-size: 0.85rem;
+  }
+
+  .experiment-entry {
+    padding: 0.8em 1em;
+    margin: 0.2em 0.3em;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.5em;
+  }
+
+  .experiment-date {
+    margin-left: 0;
+    font-size: 0.85rem;
+  }
+}
+
+@media (max-width: 600px) {
+  .hero h1 {
+    font-size: 2rem;
+  }
+
+  .link a {
+    font-size: 2.5rem;
+  }
+
+  .content-section {
+    padding: 4em 0.5em 2em;
+  }
+
+  .experiments-card {
+    border-radius: 6px;
+  }
+
+  .tab-btn {
+    padding: 0.7em 1em;
+    font-size: 0.8rem;
+  }
+
+  .tab-btn:first-child {
+    margin-left: 0.25em;
+  }
+
+  .experiment-title {
+    font-size: 0.9rem;
+  }
+
+  .experiment-date {
+    font-size: 0.8rem;
+  }
+}

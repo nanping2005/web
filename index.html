@@ -1,309 +1,439 @@
 <!DOCTYPE html>
-<html>
-
+<html lang="zh-CN">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>实验列表页面</title>
-  <style>
-    /* 全局样式重置 */
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-
-    /* 页面整体使用flex布局，让页脚能置底 */
-    body {
-      display: flex;
-      flex-direction: column;
-      min-height: 100vh;
-    }
-
-    .content-wrapper {
-      flex: 1;
-    }
-
-    /* 导航栏样式 - 保留原有设计 */
-    .navbar {
-      background-color: white;
-      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-      padding: 15px 30px;
-      height: 80px;
-      margin-bottom: 0px;
-    }
-
-    .container {
-      max-width: 1200px;
-      margin: 0 auto;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      height: 100%;
-    }
-
-    .logo {
-      font-size: 24px;
-      font-weight: bold;
-      color: #333;
-    }
-
-    .nav-links {
-      display: flex;
-      gap: 25px;
-    }
-
-    .nav-link {
-      color: #333;
-      text-decoration: none;
-      font-size: 16px;
-      transition: color 0.3s;
-    }
-
-    .nav-link:hover {
-      color: #66A0DC;
-    }
-
-    /* 内容区容器 - 保留四栏布局，去除卡片样式 */
-    .content-container {
-      max-width: 1200px;
-      margin: 0 auto;
-      padding: 0 20px;
-      padding-bottom: 150px;
-    }
-
-    .experiments-grid {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      /* 保持四栏结构 */
-      gap: 40px;
-      /* 增大列间距，提升简洁感 */
-    }
-
-    /* 实验列样式 - 完全去除卡片相关样式 */
-    .experiment-column {
-      padding: 0;
-      /* 移除原卡片内边距 */
-    }
-
-    /* 列标题样式 - 优化为简洁标题 */
-    .column-title {
-      text-align: left;
-      /* 改为左对齐，更符合线性布局 */
-      margin-bottom: 18px;
-      padding-bottom: 8px;
-      border-bottom: 2px solid #eee;
-      /* 细边框分隔标题与内容 */
-      color: #222;
-      font-size: 18px;
-      font-weight: 600;
-    }
-
-    /* 实验列表样式 - 保持基础列表结构 */
-    .experiment-list {
-      list-style: none;
-    }
-
-    .experiment-item {
-      margin-bottom: 12px;
-      /* 调整列表项间距 */
-    }
-
-    /* 链接样式优化 - 保留hover交互效果 */
-    .experiment-link {
-      color: #333;
-      text-decoration: none;
-      font-size: 16px;
-      transition: all 0.3s;
-      display: inline-block;
-    }
-
-    .experiment-link:hover {
-      color: #66A0DC;
-      transform: translateX(5px);
-      /* 保留hover位移效果 */
-    }
-
-    footer {
-      width: 100%;
-      background-color: #f0f0f0;
-      padding: 10px 0;
-      border-top: 1px solid #ddd;
-    }
-  </style>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>实验列表页面</title>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/gsap.min.js"></script>
+    <link rel="stylesheet" href="style.css">
 </head>
-
 <body>
-  <div class="content-wrapper">
-    <nav class="navbar">
-      <div class="container">
-        <div class="logo">web实验平台</div>
-        <div class="nav-links">
-          <a href="#" class="nav-link"></a>
-          <a href="#sy" class="nav-link">实验列表</a>
-          <a href="#" class="nav-link">资源下载</a>
-          <a href="mailto:2011465544@qq.com" class="nav-link">联系我们</a>
+    <nav>
+        <div class="logo">
+            <a href="#">web实验平台</a>
         </div>
-      </div>
+        <div class="menu-toggle">
+            <p id="menu-open">菜单</p>
+            <p id="menu-close">关闭</p>
+        </div>
     </nav>
-    <img src="https://bing.shangzhenyang.com/api/1080p" width="100%">
-    <br><br>
-    <h1 align="center"><a name="sy">实验列表</a></h1>
-    <br>
-    <hr width="75%" style="margin: auto;margin-bottom: 20px;">
-    <div class="content-container">
-         <div class="experiments-grid">
-             <!-- 第一列 -->
-             <div class="experiment-column">
-                 <h5 class="column-title">9.11</h5>
-                 <ul class="experiment-list">
-                     <li class="experiment-item"><a href="9.11/index.html" class="experiment-link">字体定时跳转</a></li>
-                     <li class="experiment-item"><a href="9.11/index2.html" class="experiment-link">图片背景</a></li>      
-                 </ul>
-             </div>
-    <div class="experiment-column">
-                    <h5 class="column-title">9.19</h5>
-                      <ul class="experiment-list">
-                     <li class="experiment-item"><a href="9.12/index.html" class="experiment-link">基本标签</a></li>
-                     <li class="experiment-item"><a href="9.12/index2.html" class="experiment-link">文本格式化</a></li>
-                    
-                  </ul>
-             </div>
-        <div class="experiment-column">
-                <h5 class="column-title">9.18</h5>
-                <ul class="experiment-list">
-                    <li class="experiment-item"><a href="9.18/hmtl11.html" class="experiment-link">一个简单的超链接</a></li>
-                    <li class="experiment-item"><a href="9.18/html12.html" class="experiment-link">锚点链接制作</a></li>
-                    <li class="experiment-item"><a href="9.18/html13.html" class="experiment-link">几种超链接的综合应用</a></li>
-                    <li class="experiment-item"><a href="9.18/html14.html" class="experiment-link">在HTML文件里跳转</a></li>
-                    <li class="experiment-item"><a href="9.18/html15.html" class="experiment-link">综合链接操作</a></li>
-                    <li class="experiment-item"><a href="9.18/html16.html" class="experiment-link">课本第3章课堂练习</a></li>
-                    <li class="experiment-item"><a href="9.18/html17.html" class="experiment-link">简单有序列表</a></li>
-                    <li class="experiment-item"><a href="9.18/html18.html" class="experiment-link">列表序号</a></li>
-                    <li class="experiment-item"><a href="9.18/html19.html" class="experiment-link">列表起始数值start</a></li>
-                    <li class="experiment-item"><a href="9.18/html20.html" class="experiment-link">无序列表</a></li>
-                    <li class="experiment-item"><a href="9.18/html21.html" class="experiment-link">列表的嵌套</a></li>
-                </ul>
-            </div>
 
-            <!-- 第四列 -->
-            <div class="experiment-column">
-                <h5 class="column-title">9.19</h5>
-                <ul class="experiment-list">
-                    <li class="experiment-item"><a href="9.19/html21.html" class="experiment-link">各种图片的使用</a></li>
-                    <li class="experiment-item"><a href="9.19/html22.html" class="experiment-link">图像的提示文字alt的使用</a></li>
-                    <li class="experiment-item"><a href="9.19/html23.html" class="experiment-link">图像的宽度和高度width、height</a></li>
-                    <li class="experiment-item"><a href="9.19/html24.html" class="experiment-link">图像的边框border练习</a></li>
-                    <li class="experiment-item"><a href="9.19/html25.html" class="experiment-link">图像的垂直,水平边距</a></li>
-                    <li class="experiment-item"><a href="9.19/html26.html" class="experiment-link">图像的排列align属性</a></li>
-                    <li class="experiment-item"><a href="9.19/html27.html" class="experiment-link">通过在标签中使用clear属性</a></li>
-                    <li class="experiment-item"><a href="9.19/html28.html" class="experiment-link">底部三超链接</a></li>
-                    <li class="experiment-item"><a href="9.19/html29.html" class="experiment-link">图像热区链接练习</a></li>
-                    <li class="experiment-item"><a href="9.19/html210.html" class="experiment-link">三个热区应使用不同形状区域</a></li>
-                    <li class="experiment-item"><a href="9.19/html211.html" class="experiment-link">图形应用综合实例</a></li>
-                    <li class="experiment-item"><a href="9.19/html212.html" class="experiment-link">简单表格创建</a></li>
-                    <li class="experiment-item"><a href="9.19/html213.html" class="experiment-link">表格标题、表头练习</a></li>
-                    <li class="experiment-item"><a href="9.19/html214.html" class="experiment-link">border属性对表格进行修饰</a></li>
-                    <li class="experiment-item"><a href="9.19/html215.html" class="experiment-link">横竖转换</a></li>
-                    <li class="experiment-item"><a href="9.19/html216.html" class="experiment-link">表框分割线</a></li>
-                    <li class="experiment-item"><a href="9.19/html217.html" class="experiment-link">表格小综合实例</a></li>
-                </ul>
+    <div class="menu-overlay">
+        <div class="menu-content">
+            <div class="menu-items">
+                <div class="col-lg">
+                    <div class="menu-preview-img"><img src="DJI_20250805105234_0228_D-HDR-1.jpg" alt=""></div>
+                </div>
+                <div class="col-sm">
+                    <div class="menu-links">
+                        <div class="link">
+                            <a href="#sy" data-img="DJI_20250805105234_0228_D-HDR-1.jpg">实验列表</a>
+                        </div>
+                        <div class="link"> 
+                            <a href="#" data-img="DJI_0148-HDR-1.jpg">资源下载</a>
+                        </div>
+                        <div class="link"> 
+                            <a href="mailto:2011465544@qq.com" data-img="DJI_20250805105234_0228_D-HDR-1.jpg">联系我们</a>
+                        </div>
+                    </div>
+                    <div class="menu-socials">
+                        <div class="social"><a href="mailto:2011465544@qq.com">邮箱</a></div>
+                        <div class="social"><a href="#">微博</a></div>
+                        <div class="social"><a href="#">Bilibili</a></div>
+                        <div class="social"><a href="https://nanping20.fun">网站</a></div>
+                    </div>
+                </div>
+            </div>
+            <div class="menu-footer">
+                <div class="col-lg">
+                    <a href="#">实验平台</a>
+                </div>
+                <div class="col-sm">
+                    <a href="#">© 20230106105 陈韬</a>
+                    <a href="https://nanping20.fun">当前域名</a>
+                </div>
             </div>
         </div>
     </div>
-	<div class="content-container">
-	        <div class="experiments-grid">
-	            <!-- 第一列 -->
-	            <div class="experiment-column">
-	                <h5 class="column-title">9.25</h5>
-	                <ul class="experiment-list">
-	                    <li class="experiment-item"><a href="9.25/html11.html" class="experiment-link">表格背景颜色及背景图片</a></li>
-	                    <li class="experiment-item"><a href="9.25/html12.html" class="experiment-link">表格行文字的垂直对齐方式</a></li>
-						<li class="experiment-item"><a href="9.25/html13.html" class="experiment-link">单元格大小width、height设置</a></li>
-						<li class="experiment-item"><a href="9.25/html14.html" class="experiment-link">水平及垂直跨度</a></li>
-						<li class="experiment-item"><a href="9.25/html15.html" class="experiment-link">多种属性分别对多个表格进行修饰</a></li>
-						<li class="experiment-item"><a href="9.25/html16.html" class="experiment-link">多种属性对表格进行修饰</a></li>
-						<li class="experiment-item"><a href="9.25/html17.html" class="experiment-link">HTML中使用表格（扩展练习）</a></li>
-						<li class="experiment-item"><a href="9.25/html21.html" class="experiment-link">表格背景颜色及背景图片</a></li>
-						<li class="experiment-item"><a href="9.25/html22.html" class="experiment-link">表格背景颜色及背景图片</a></li>
-						<li class="experiment-item"><a href="9.25/html23.html" class="experiment-link">表格背景颜色及背景图片</a></li>
-						<li class="experiment-item"><a href="9.25/html24.html" class="experiment-link">表格背景颜色及背景图片</a></li>
-						<li class="experiment-item"><a href="9.25/html25.html" class="experiment-link">表格背景颜色及背景图片</a></li>
-						<li class="experiment-item"><a href="9.25/html26.html" class="experiment-link">表格背景颜色及背景图片</a></li>
-						<li class="experiment-item"><a href="9.25/html27.html" class="experiment-link">表格背景颜色及背景图片</a></li>
-	                </ul>
-	            </div>
-	   <div class="experiment-column">
-	                   <h5 class="column-title">9.19</h5>
-	                     <ul class="experiment-list">
-	                    <li class="experiment-item"><a href="9.26/html11.html" class="experiment-link">表格背景颜色及背景图片</a></li>
-						<li class="experiment-item"><a href="9.26/html12.html" class="experiment-link">表格背景颜色及背景图片</a></li>
-						<li class="experiment-item"><a href="9.26/html13.html" class="experiment-link">表格背景颜色及背景图片</a></li>
-						
-	                   
-	                 </ul>
-	            </div>
-	       <div class="experiment-column">
-	               <h5 class="column-title">9.18</h5>
-	               <ul class="experiment-list">
-	                  <li class="experiment-item"><a href="10.9/html11.html" class="experiment-link">表格背景颜色及背景图片</a></li>
-					   <li class="experiment-item"><a href="10.9/html12.html" class="experiment-link">表格背景颜色及背景图片</a></li>
-					   <li class="experiment-item"><a href="10.9/html13.html" class="experiment-link">表格背景颜色及背景图片</a></li>
-					   <li class="experiment-item"><a href="10.9/html14.html" class="experiment-link">表格背景颜色及背景图片</a></li>
-					   <li class="experiment-item"><a href="10.9/html15.html" class="experiment-link">表格背景颜色及背景图片</a></li>
-					   <li class="experiment-item"><a href="10.9/html16.html" class="experiment-link">表格背景颜色及背景图片</a></li>
-					   <li class="experiment-item"><a href="10.9/html17.html" class="experiment-link">表格背景颜色及背景图片</a></li>
-					   <li class="experiment-item"><a href="10.9/html18.html" class="experiment-link">表格背景颜色及背景图片</a></li>
-					   <li class="experiment-item"><a href="10.9/html19.html" class="experiment-link">表格背景颜色及背景图片</a></li>
-					   <li class="experiment-item"><a href="10.9/html20.html" class="experiment-link">表格背景颜色及背景图片</a></li>
-					   <li class="experiment-item"><a href="10.9/html21.html" class="experiment-link">表格背景颜色及背景图片</a></li>
-					   <li class="experiment-item"><a href="10.9/html22.html" class="experiment-link">表格背景颜色及背景图片</a></li>
-					   <li class="experiment-item"><a href="10.9/html23.html" class="experiment-link">表格背景颜色及背景图片</a></li>
-					   <li class="experiment-item"><a href="10.9/html24.html" class="experiment-link">表格背景颜色及背景图片</a></li>
-					   <li class="experiment-item"><a href="10.9/html25.html" class="experiment-link">表格背景颜色及背景图片</a></li>
-	               </ul>
-	           </div>
-	
-	           <!-- 第四列 -->
-	           <div class="experiment-column">
-	               <h5 class="column-title">9.19</h5>
-	               <ul class="experiment-list">
-	                  
-	               </ul>
-	           </div>
-	       </div>
-	   </div>
-  <footer class="bg-white border-t border-gray-200 py-3 px-4 md:px-6 mt-6">
-    <div class="container mx-auto text-center text-sm text-gray-500">
-      <table width="100%" border="0" cellspacing="30" align="center">
-        <tr>
-          <td align="right" valign="top" width="50%">
-            <h3>与我联系</h3>
-          </td>
-          <td>
-            <h3>版权信息</h3>
-          </td>
-        </tr>
-        <tr>
-          <td align="right" valign="top" width="50%">
-            <p><a href="mailto:2011465544@qq.com" class="nav-link">我的邮箱</a></p>
-            <p>我的微博</p>
-            <p>我的 bilibili 频道</p>
-            <p>捐助我</p>
-          </td>
-          <td valign="top">
-            <p>© 20230106105 陈韬</p>
-            <p><a href="https://nanping20.fun" class="experiment-link">目前使用域名</a></p>
-          </td>
-        </tr>
-      </table>
+
+    <div class="container">
+        <section class="hero">
+            <div class="hero-img"><img src="DJI_20250805105234_0228_D-HDR-1.jpg" alt=""></div>
+            <h1>Web实验平台 - 探索前端技术的无限可能</h1>
+        </section>
+        
+        <div class="content-section" id="sy">
+            <div class="experiments-card">
+                <div class="tabs-nav">
+                    <button class="tab-btn active" data-tab="all">最新</button>
+                    <button class="tab-btn" data-tab="oct2024">10月</button>
+                    <button class="tab-btn" data-tab="sep2024">9月</button>
+                </div>
+                
+                <div class="experiments-list">
+                    <!-- 10月 -->
+                    <div class="experiment-entry" data-month="oct2024">
+                        <a href="10.24/7-20.html" class="experiment-title">实验20</a>
+                        <span class="experiment-date">2024.10.24</span>
+                    </div>
+                    <div class="experiment-entry" data-month="oct2024">
+                        <a href="10.24/7-19.html" class="experiment-title">实验19</a>
+                        <span class="experiment-date">2024.10.24</span>
+                    </div>
+                    <div class="experiment-entry" data-month="oct2024">
+                        <a href="10.24/7-18.html" class="experiment-title">实验18</a>
+                        <span class="experiment-date">2024.10.24</span>
+                    </div>
+                    <div class="experiment-entry" data-month="oct2024">
+                        <a href="10.24/7-17.html" class="experiment-title">实验17</a>
+                        <span class="experiment-date">2024.10.24</span>
+                    </div>
+                    <div class="experiment-entry" data-month="oct2024">
+                        <a href="10.24/7-16.html" class="experiment-title">实验16</a>
+                        <span class="experiment-date">2024.10.24</span>
+                    </div>
+                    <div class="experiment-entry" data-month="oct2024">
+                        <a href="10.24/html13.html" class="experiment-title">HTML实验13</a>
+                        <span class="experiment-date">2024.10.24</span>
+                    </div>
+                    <div class="experiment-entry" data-month="oct2024">
+                        <a href="10.24/html12.html" class="experiment-title">HTML实验12</a>
+                        <span class="experiment-date">2024.10.24</span>
+                    </div>
+                    <div class="experiment-entry" data-month="oct2024">
+                        <a href="10.24/html11.html" class="experiment-title">HTML实验11</a>
+                        <span class="experiment-date">2024.10.24</span>
+                    </div>
+                    <div class="experiment-entry" data-month="oct2024">
+                        <a href="10.23/html17.html" class="experiment-title">HTML实验17</a>
+                        <span class="experiment-date">2024.10.23</span>
+                    </div>
+                    <div class="experiment-entry" data-month="oct2024">
+                        <a href="10.23/html16.html" class="experiment-title">HTML实验16</a>
+                        <span class="experiment-date">2024.10.23</span>
+                    </div>
+                    <div class="experiment-entry" data-month="oct2024">
+                        <a href="10.23/html15.html" class="experiment-title">HTML实验15</a>
+                        <span class="experiment-date">2024.10.23</span>
+                    </div>
+                    <div class="experiment-entry" data-month="oct2024">
+                        <a href="10.23/html14.html" class="experiment-title">HTML实验14</a>
+                        <span class="experiment-date">2024.10.23</span>
+                    </div>
+                    <div class="experiment-entry" data-month="oct2024">
+                        <a href="10.23/html13.html" class="experiment-title">HTML实验13</a>
+                        <span class="experiment-date">2024.10.23</span>
+                    </div>
+                    <div class="experiment-entry" data-month="oct2024">
+                        <a href="10.23/html12.html" class="experiment-title">HTML实验12</a>
+                        <span class="experiment-date">2024.10.23</span>
+                    </div>
+                    <div class="experiment-entry" data-month="oct2024">
+                        <a href="10.23/html11.html" class="experiment-title">HTML实验11</a>
+                        <span class="experiment-date">2024.10.23</span>
+                    </div>
+                    <div class="experiment-entry" data-month="oct2024">
+                        <a href="10.17/html23.html" class="experiment-title">CSS样式综合应用</a>
+                        <span class="experiment-date">2024.10.23</span>
+                    </div>
+                    <div class="experiment-entry" data-month="oct2024">
+                        <a href="10.17/html22.html" class="experiment-title">CSS布局练习</a>
+                        <span class="experiment-date">2024.10.22</span>
+                    </div>
+                    <div class="experiment-entry" data-month="oct2024">
+                        <a href="10.17/html21.html" class="experiment-title">CSS样式应用</a>
+                        <span class="experiment-date">2024.10.21</span>
+                    </div>
+                    <div class="experiment-entry" data-month="oct2024">
+                        <a href="10.17/html14.html" class="experiment-title">块和CSS样式</a>
+                        <span class="experiment-date">2024.10.17</span>
+                    </div>
+                    <div class="experiment-entry" data-month="oct2024">
+                        <a href="10.17/html13.html" class="experiment-title">CSS块级元素</a>
+                        <span class="experiment-date">2024.10.17</span>
+                    </div>
+                    <div class="experiment-entry" data-month="oct2024">
+                        <a href="10.17/html11.html" class="experiment-title">CSS基础练习</a>
+                        <span class="experiment-date">2024.10.17</span>
+                    </div>
+                    <div class="experiment-entry" data-month="oct2024">
+                        <a href="10.16/1-2.html" class="experiment-title">块和CSS练习2</a>
+                        <span class="experiment-date">2024.10.16</span>
+                    </div>
+                    <div class="experiment-entry" data-month="oct2024">
+                        <a href="10.16/1-1.html" class="experiment-title">块和CSS练习1</a>
+                        <span class="experiment-date">2024.10.16</span>
+                    </div>
+                    <div class="experiment-entry" data-month="oct2024">
+                        <a href="10.10/js/index.html" class="experiment-title">期中测试</a>
+                        <span class="experiment-date">2024.10.10</span>
+                    </div>
+                    <div class="experiment-entry" data-month="oct2024">
+                        <a href="10.9/html25.html" class="experiment-title">表格样式综合练习</a>
+                        <span class="experiment-date">2024.10.09</span>
+                    </div>
+                    <div class="experiment-entry" data-month="oct2024">
+                        <a href="10.9/html24.html" class="experiment-title">表格样式练习</a>
+                        <span class="experiment-date">2024.10.09</span>
+                    </div>
+                    <div class="experiment-entry" data-month="oct2024">
+                        <a href="10.9/html23.html" class="experiment-title">表格应用</a>
+                        <span class="experiment-date">2024.10.09</span>
+                    </div>
+                    <div class="experiment-entry" data-month="oct2024">
+                        <a href="10.9/html22.html" class="experiment-title">表格样式</a>
+                        <span class="experiment-date">2024.10.09</span>
+                    </div>
+                    <div class="experiment-entry" data-month="oct2024">
+                        <a href="10.9/html21.html" class="experiment-title">表格基础</a>
+                        <span class="experiment-date">2024.10.09</span>
+                    </div>
+                    <div class="experiment-entry" data-month="oct2024">
+                        <a href="10.9/html20.html" class="experiment-title">表格练习20</a>
+                        <span class="experiment-date">2024.10.09</span>
+                    </div>
+                    <div class="experiment-entry" data-month="oct2024">
+                        <a href="10.9/html19.html" class="experiment-title">表格练习19</a>
+                        <span class="experiment-date">2024.10.09</span>
+                    </div>
+                    <div class="experiment-entry" data-month="oct2024">
+                        <a href="10.9/html18.html" class="experiment-title">表格练习18</a>
+                        <span class="experiment-date">2024.10.09</span>
+                    </div>
+                    <div class="experiment-entry" data-month="oct2024">
+                        <a href="10.9/html17.html" class="experiment-title">表格练习17</a>
+                        <span class="experiment-date">2024.10.09</span>
+                    </div>
+                    <div class="experiment-entry" data-month="oct2024">
+                        <a href="10.9/html16.html" class="experiment-title">表格练习16</a>
+                        <span class="experiment-date">2024.10.09</span>
+                    </div>
+                    <div class="experiment-entry" data-month="oct2024">
+                        <a href="10.9/html15.html" class="experiment-title">表格练习15</a>
+                        <span class="experiment-date">2024.10.09</span>
+                    </div>
+                    <div class="experiment-entry" data-month="oct2024">
+                        <a href="10.9/html14.html" class="experiment-title">表格练习14</a>
+                        <span class="experiment-date">2024.10.09</span>
+                    </div>
+                    <div class="experiment-entry" data-month="oct2024">
+                        <a href="10.9/html13.html" class="experiment-title">表格练习13</a>
+                        <span class="experiment-date">2024.10.09</span>
+                    </div>
+                    <div class="experiment-entry" data-month="oct2024">
+                        <a href="10.9/html12.html" class="experiment-title">表格练习12</a>
+                        <span class="experiment-date">2024.10.09</span>
+                    </div>
+                    <div class="experiment-entry" data-month="oct2024">
+                        <a href="10.9/html11.html" class="experiment-title">表格练习11</a>
+                        <span class="experiment-date">2024.10.09</span>
+                    </div>
+                    <!-- 9月 -->
+                    <div class="experiment-entry" data-month="sep2024">
+                        <a href="9.26/html13.html" class="experiment-title">表格高级应用</a>
+                        <span class="experiment-date">2024.09.26</span>
+                    </div>
+                    <div class="experiment-entry" data-month="sep2024">
+                        <a href="9.26/html12.html" class="experiment-title">表格样式练习</a>
+                        <span class="experiment-date">2024.09.26</span>
+                    </div>
+                    <div class="experiment-entry" data-month="sep2024">
+                        <a href="9.26/html11.html" class="experiment-title">表格基础练习</a>
+                        <span class="experiment-date">2024.09.26</span>
+                    </div>
+                    <div class="experiment-entry" data-month="sep2024">
+                        <a href="9.25/html27.html" class="experiment-title">表格背景颜色及背景图片</a>
+                        <span class="experiment-date">2024.09.25</span>
+                    </div>
+                    <div class="experiment-entry" data-month="sep2024">
+                        <a href="9.25/html26.html" class="experiment-title">表格样式综合</a>
+                        <span class="experiment-date">2024.09.25</span>
+                    </div>
+                    <div class="experiment-entry" data-month="sep2024">
+                        <a href="9.25/html25.html" class="experiment-title">表格样式应用</a>
+                        <span class="experiment-date">2024.09.25</span>
+                    </div>
+                    <div class="experiment-entry" data-month="sep2024">
+                        <a href="9.25/html24.html" class="experiment-title">表格样式练习</a>
+                        <span class="experiment-date">2024.09.25</span>
+                    </div>
+                    <div class="experiment-entry" data-month="sep2024">
+                        <a href="9.25/html23.html" class="experiment-title">表格样式</a>
+                        <span class="experiment-date">2024.09.25</span>
+                    </div>
+                    <div class="experiment-entry" data-month="sep2024">
+                        <a href="9.25/html22.html" class="experiment-title">表格应用</a>
+                        <span class="experiment-date">2024.09.25</span>
+                    </div>
+                    <div class="experiment-entry" data-month="sep2024">
+                        <a href="9.25/html21.html" class="experiment-title">表格基础</a>
+                        <span class="experiment-date">2024.09.25</span>
+                    </div>
+                    <div class="experiment-entry" data-month="sep2024">
+                        <a href="9.25/html17.html" class="experiment-title">HTML中使用表格（扩展练习）</a>
+                        <span class="experiment-date">2024.09.25</span>
+                    </div>
+                    <div class="experiment-entry" data-month="sep2024">
+                        <a href="9.25/html16.html" class="experiment-title">表格多种属性修饰</a>
+                        <span class="experiment-date">2024.09.25</span>
+                    </div>
+                    <div class="experiment-entry" data-month="sep2024">
+                        <a href="9.25/html15.html" class="experiment-title">多种属性分别对多个表格进行修饰</a>
+                        <span class="experiment-date">2024.09.25</span>
+                    </div>
+                    <div class="experiment-entry" data-month="sep2024">
+                        <a href="9.25/html14.html" class="experiment-title">水平及垂直跨度</a>
+                        <span class="experiment-date">2024.09.25</span>
+                    </div>
+                    <div class="experiment-entry" data-month="sep2024">
+                        <a href="9.25/html13.html" class="experiment-title">单元格大小width、height设置</a>
+                        <span class="experiment-date">2024.09.25</span>
+                    </div>
+                    <div class="experiment-entry" data-month="sep2024">
+                        <a href="9.25/html12.html" class="experiment-title">表格行文字的垂直对齐方式</a>
+                        <span class="experiment-date">2024.09.25</span>
+                    </div>
+                    <div class="experiment-entry" data-month="sep2024">
+                        <a href="9.25/html11.html" class="experiment-title">表格背景颜色及背景图片</a>
+                        <span class="experiment-date">2024.09.25</span>
+                    </div>
+                    <div class="experiment-entry" data-month="sep2024">
+                        <a href="9.19/html217.html" class="experiment-title">表格小综合实例</a>
+                        <span class="experiment-date">2024.09.19</span>
+                    </div>
+                    <div class="experiment-entry" data-month="sep2024">
+                        <a href="9.19/html216.html" class="experiment-title">表框分割线</a>
+                        <span class="experiment-date">2024.09.19</span>
+                    </div>
+                    <div class="experiment-entry" data-month="sep2024">
+                        <a href="9.19/html215.html" class="experiment-title">横竖转换</a>
+                        <span class="experiment-date">2024.09.19</span>
+                    </div>
+                    <div class="experiment-entry" data-month="sep2024">
+                        <a href="9.19/html214.html" class="experiment-title">border属性对表格进行修饰</a>
+                        <span class="experiment-date">2024.09.19</span>
+                    </div>
+                    <div class="experiment-entry" data-month="sep2024">
+                        <a href="9.19/html213.html" class="experiment-title">表格标题、表头练习</a>
+                        <span class="experiment-date">2024.09.19</span>
+                    </div>
+                    <div class="experiment-entry" data-month="sep2024">
+                        <a href="9.19/html212.html" class="experiment-title">简单表格创建</a>
+                        <span class="experiment-date">2024.09.19</span>
+                    </div>
+                    <div class="experiment-entry" data-month="sep2024">
+                        <a href="9.19/html211.html" class="experiment-title">图形应用综合实例</a>
+                        <span class="experiment-date">2024.09.19</span>
+                    </div>
+                    <div class="experiment-entry" data-month="sep2024">
+                        <a href="9.19/html210.html" class="experiment-title">三个热区应使用不同形状区域</a>
+                        <span class="experiment-date">2024.09.19</span>
+                    </div>
+                    <div class="experiment-entry" data-month="sep2024">
+                        <a href="9.19/html29.html" class="experiment-title">图像热区链接练习</a>
+                        <span class="experiment-date">2024.09.19</span>
+                    </div>
+                    <div class="experiment-entry" data-month="sep2024">
+                        <a href="9.19/html28.html" class="experiment-title">底部三超链接</a>
+                        <span class="experiment-date">2024.09.19</span>
+                    </div>
+                    <div class="experiment-entry" data-month="sep2024">
+                        <a href="9.19/html27.html" class="experiment-title">通过在标签中使用clear属性</a>
+                        <span class="experiment-date">2024.09.19</span>
+                    </div>
+                    <div class="experiment-entry" data-month="sep2024">
+                        <a href="9.19/html26.html" class="experiment-title">图像的排列align属性</a>
+                        <span class="experiment-date">2024.09.19</span>
+                    </div>
+                    <div class="experiment-entry" data-month="sep2024">
+                        <a href="9.19/html25.html" class="experiment-title">图像的垂直,水平边距</a>
+                        <span class="experiment-date">2024.09.19</span>
+                    </div>
+                    <div class="experiment-entry" data-month="sep2024">
+                        <a href="9.19/html24.html" class="experiment-title">图像的边框border练习</a>
+                        <span class="experiment-date">2024.09.19</span>
+                    </div>
+                    <div class="experiment-entry" data-month="sep2024">
+                        <a href="9.19/html23.html" class="experiment-title">图像的宽度和高度width、height</a>
+                        <span class="experiment-date">2024.09.19</span>
+                    </div>
+                    <div class="experiment-entry" data-month="sep2024">
+                        <a href="9.19/html22.html" class="experiment-title">图像的提示文字alt的使用</a>
+                        <span class="experiment-date">2024.09.19</span>
+                    </div>
+                    <div class="experiment-entry" data-month="sep2024">
+                        <a href="9.19/html21.html" class="experiment-title">各种图片的使用</a>
+                        <span class="experiment-date">2024.09.19</span>
+                    </div>
+                    <div class="experiment-entry" data-month="sep2024">
+                        <a href="9.18/html21.html" class="experiment-title">列表的嵌套</a>
+                        <span class="experiment-date">2024.09.18</span>
+                    </div>
+                    <div class="experiment-entry" data-month="sep2024">
+                        <a href="9.18/html20.html" class="experiment-title">无序列表</a>
+                        <span class="experiment-date">2024.09.18</span>
+                    </div>
+                    <div class="experiment-entry" data-month="sep2024">
+                        <a href="9.18/html19.html" class="experiment-title">列表起始数值start</a>
+                        <span class="experiment-date">2024.09.18</span>
+                    </div>
+                    <div class="experiment-entry" data-month="sep2024">
+                        <a href="9.18/html18.html" class="experiment-title">列表序号</a>
+                        <span class="experiment-date">2024.09.18</span>
+                    </div>
+                    <div class="experiment-entry" data-month="sep2024">
+                        <a href="9.18/html17.html" class="experiment-title">简单有序列表</a>
+                        <span class="experiment-date">2024.09.18</span>
+                    </div>
+                    <div class="experiment-entry" data-month="sep2024">
+                        <a href="9.18/html16.html" class="experiment-title">课本第3章课堂练习</a>
+                        <span class="experiment-date">2024.09.18</span>
+                    </div>
+                    <div class="experiment-entry" data-month="sep2024">
+                        <a href="9.18/html15.html" class="experiment-title">综合链接操作</a>
+                        <span class="experiment-date">2024.09.18</span>
+                    </div>
+                    <div class="experiment-entry" data-month="sep2024">
+                        <a href="9.18/html14.html" class="experiment-title">在HTML文件里跳转</a>
+                        <span class="experiment-date">2024.09.18</span>
+                    </div>
+                    <div class="experiment-entry" data-month="sep2024">
+                        <a href="9.18/html13.html" class="experiment-title">几种超链接的综合应用</a>
+                        <span class="experiment-date">2024.09.18</span>
+                    </div>
+                    <div class="experiment-entry" data-month="sep2024">
+                        <a href="9.18/html12.html" class="experiment-title">锚点链接制作</a>
+                        <span class="experiment-date">2024.09.18</span>
+                    </div>
+                    <div class="experiment-entry" data-month="sep2024">
+                        <a href="9.18/hmtl11.html" class="experiment-title">一个简单的超链接</a>
+                        <span class="experiment-date">2024.09.18</span>
+                    </div>
+                    <div class="experiment-entry" data-month="sep2024">
+                        <a href="9.12/index2.html" class="experiment-title">文本格式化</a>
+                        <span class="experiment-date">2024.09.12</span>
+                    </div>
+                    <div class="experiment-entry" data-month="sep2024">
+                        <a href="9.12/index.html" class="experiment-title">基本标签</a>
+                        <span class="experiment-date">2024.09.12</span>
+                    </div>
+                    <div class="experiment-entry" data-month="sep2024">
+                        <a href="9.11/index2.html" class="experiment-title">图片背景</a>
+                        <span class="experiment-date">2024.09.11</span>
+                    </div>
+                    <div class="experiment-entry" data-month="sep2024">
+                        <a href="9.11/index.html" class="experiment-title">字体定时跳转</a>
+                        <span class="experiment-date">2024.09.11</span>
+                    </div>
+                </div>
+                
+                <div class="view-more-container">
+                    <button class="view-more-btn">查看更多</button>
+                </div>
+            </div>
+        </div>
     </div>
-  </footer>
+    
+    <script src="script.js"></script>
 </body>
-
 </html>
-
-
-
-
-
