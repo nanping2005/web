@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>内联元素与分页示例（列表版）</title>
+    <style>
+        /* 内联元素容器样式 */
+        .inline-container {
+            margin-bottom: 40px;
+        }
+        em, i, a, span {
+            display: inline-block;
+            background-color: #fdd835;
+            padding: 10px 20px;
+            margin: 0;
+        }
+        /* 分页列表样式 */
+        .pagination {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: inline-flex;
+            align-items: center;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+        .pagination li {
+            margin: 0;
+        }
+        .pagination li a, .pagination li span {
+            display: block;
+            padding: 8px 16px;
+            text-decoration: none;
+            color: #333;
+        }
+        .pagination li span.active {
+            background-color: #737373;
+            color: white;
+        }
+        .pagination li a:hover:not(.active) {
+            background-color: #f1f1f1;
+        }
+    </style>
+</head>
+<body>
+    <div class="inline-container">
+        <em>em元素</em>
+        <i>i元素</i>
+        <a href="#">a元素</a>
+        <span>span元素</span>
+    </div>
+    <ul class="pagination">
+        <li><a href="#">上一页</a></li>
+        <li><a href="#">1</a></li>
+        <li><span class="active">2</span></li>
+        <li><a href="#">3</a></li>
+        <li><a href="#">4</a></li>
+        <li><a href="#">5</a></li>
+        <li><span>...</span></li>
+        <li><a href="#">下一页</a></li>
+    </ul>
+</body>
+</html>
