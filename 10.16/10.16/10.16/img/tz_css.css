@@ -1,0 +1,27 @@
+BODY {
+	SCROLLBAR-FACE-COLOR: #dbdbdb; SCROLLBAR-HIGHLIGHT-COLOR: #ffffff; SCROLLBAR-SHADOW-COLOR: #ffffff; SCROLLBAR-ARROW-COLOR: #000000; SCROLLBAR-BASE-COLOR: #000000; lbar-dark-shadow-color: #FFFFFF
+}
+UNKNOWN {
+	FONT-SIZE: 9pt; FONT-FAMILY: ËÎÌו
+}
+TD {
+	FONT-SIZE: 9pt
+}
+A:link {
+	COLOR: #000000; TEXT-DECORATION: none
+}
+A:visited {
+	COLOR: #000000; TEXT-DECORATION: none
+}
+A:active {
+	COLOR: #0000ff; TEXT-DECORATION: underline
+}
+A:hover {
+	COLOR: #006666; POSITION: relative; TOP: auto; TEXT-DECORATION: underline
+}
+.navtd {
+	FONT-SIZE: 12px; COLOR: #ffffff; FONT-FAMILY: Tahoma, Arial; TEXT-DECORATION: none
+}
+DIV {
+	FONT-SIZE: 9pt
+}
