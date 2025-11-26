@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>陈韬 - 臭拍照的</title>
+    <link rel="icon" type="image/svg+xml" href="img/相机.svg">
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/gsap.min.js"></script>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- 导航栏 -->
+    <nav class="main-nav">
+        <div class="nav-container">
+            <div class="logo">
+                <a href="index.html">陈韬</a>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="index.html" class="active">首页</a></li>
+                <li>
+                    <div class="nav-dropdown">
+                        <a href="portfolio.html" class="dropdown-toggle">作品集 <span class="dropdown-arrow">▼</span></a>
+                        <div class="dropdown-menu">
+                            <a href="portfolio.html?filter=landscape">风光</a>
+                            <a href="portfolio.html?filter=aerial">航拍</a>
+                            <a href="portfolio.html?filter=urban">城市</a>
+                            <a href="portfolio.html?filter=nature">自然</a>
+                        </div>
+                    </div>
+                </li>
+                <li><a href="blog.html">摄影动态</a></li>
+                <li><a href="about.html">关于我</a></li>
+                <li><a href="contact.html">联系我</a></li>
+            </ul>
+            <div class="menu-toggle">
+                <p id="menu-open">菜单</p>
+                <p id="menu-close">关闭</p>
+            </div>
+        </div>
+    </nav>
+
+    <!-- 菜单覆盖层 -->
+    <div class="menu-overlay">
+        <div class="menu-content">
+            <div class="menu-items">
+                <div class="col-lg">
+                    <div class="menu-preview-img">
+                        <img src="img/鼎湖1_1.jpg" alt="">
+                    </div>
+                </div>
+                <div class="col-sm">
+                    <div class="menu-links">
+                        <div class="link">
+                            <a href="services.html" data-img="img/7.25金象山.jpg">服务项目</a>
+                        </div>
+                        <div class="link">
+                            <a href="equipment.html" data-img="img/未标题-1_1.jpg">设备器材</a>
+                        </div>
+                        <div class="link"> 
+                            <a href="tips.html" data-img="img/AC200605-1_1.jpg">摄影技巧</a>
+                        </div>
+                        <div class="link"> 
+                            <a href="contact.html" data-img="img/AC208039_GFX100II-1_1.jpg">联系我</a>
+                        </div>
+                    </div>
+                    <div class="menu-socials">
+                        <div class="social">
+                            <a href="mailto:2011465544@qq.com">邮箱</a>
+                        </div>
+                        <div class="social">
+                            <a href="https://weibo.com" target="_blank">微博</a>
+                        </div>
+                        <div class="social">
+                            <a href="https://space.bilibili.com" target="_blank">Bilibili</a>
+                        </div>
+                        <div class="social">
+                            <a href="https://nanping20.fun">网站</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="menu-footer">
+                <div class="col-lg">
+                    <a href="index.html">陈韬摄影</a>
+                </div>
+                <div class="col-sm">
+                    <a href="index.html">© 20230106105 陈韬</a>
+                    <a href="https://nanping20.fun">当前域名</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <!-- 全屏英雄区域 -->
+        <section class="hero-section">
+            <div class="hero-image">
+                <img src="img/_DSC9674 全景小_1.jpg" alt="摄影作品">
+            </div>
+            <div class="hero-overlay"></div>
+            <div class="hero-content">
+                <h1 class="hero-title">陈韬</h1>
+                <p class="hero-subtitle">用镜头记录世界的美好瞬间</p>
+            </div>
+        </section>
+        
+        <!-- 精选作品 -->
+        <section class="featured-works" id="works">
+            <div class="container">
+                <div class="section-header">
+                    <h2>精选作品</h2>
+                </div>
+                <div class="works-grid">
+                    <div class="work-item large">
+                        <img src="img/鼎湖1_1.jpg" alt="自然风光">
+                        <div class="work-overlay">
+                            <h3>自然风光</h3>
+                            <p>2024年10月</p>
+                        </div>
+                    </div>
+                    <div class="work-item">
+                        <img src="img/DJI_2025R_1.jpg" alt="航拍视角">
+                        <div class="work-overlay">
+                            <h3>航拍视角</h3>
+                            <p>2024年8月</p>
+                        </div>
+                    </div>
+                    <div class="work-item">
+                        <img src="img/C2_07541_1.jpg" alt="城市印象">
+                        <div class="work-overlay">
+                            <h3>城市印象</h3>
+                            <p>2024年9月</p>
+                        </div>
+                    </div>
+                    <div class="work-item">
+                        <img src="img/C2_09005-1_1.jpg" alt="光影艺术">
+                        <div class="work-overlay">
+                            <h3>光影艺术</h3>
+                            <p>2024年7月</p>
+                        </div>
+                    </div>
+                    <div class="work-item">
+                        <img src="img/DJI_0205-1_1.jpg" alt="航拍作品">
+                        <div class="work-overlay">
+                            <h3>航拍作品</h3>
+                            <p>2024年6月</p>
+                        </div>
+                    </div>
+                    <div class="work-item">
+                        <img src="img/C2_08845_1.jpg" alt="风光摄影">
+                        <div class="work-overlay">
+                            <h3>风光摄影</h3>
+                            <p>2024年5月</p>
+                        </div>
+                    </div>
+                    <div class="work-item wide">
+                        <img src="img/_DSC9674 全景小_1.jpg" alt="全景风光">
+                        <div class="work-overlay">
+                            <h3>全景风光</h3>
+                            <p>2024年6月</p>
+                        </div>
+                    </div>
+                    <div class="work-item">
+                        <img src="img/DJI_0303-HDR-1_1.jpg" alt="航拍HDR">
+                        <div class="work-overlay">
+                            <h3>航拍HDR</h3>
+                            <p>2024年4月</p>
+                        </div>
+                    </div>
+                    <div class="work-item">
+                        <img src="img/C2_07797-HDR-1_1.jpg" alt="HDR风光">
+                        <div class="work-overlay">
+                            <h3>HDR风光</h3>
+                            <p>2024年3月</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="view-more">
+                    <a href="portfolio.html" class="btn-outline">查看更多作品</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- 关于我简介 -->
+        <section class="about-preview">
+            <div class="container">
+                <div class="about-intro">
+                    <h2 class="about-title">关于我</h2>
+                    <div class="about-content">
+                        <div class="about-text">
+                            <p class="about-description">
+                                我是一名臭拍照的，专注于<strong>风光摄影</strong>和<strong>航拍摄影</strong>。通过镜头，我捕捉自然之美、城市之韵，用影像记录那些转瞬即逝的瞬间。
+                            </p>
+                            <p class="about-description">
+                                无论是远方的壮丽风光，还是身边的城市景观，我都能通过镜头捕捉到令人难忘的瞬间。每一张照片都承载着我对美的理解和对生活的感悟。
+                            </p>
+                            <p class="about-description">
+                                我相信，摄影不仅是技术的展现，更是情感的表达。用镜头记录世界的美好，是我一直以来的追求。
+                            </p>
+                            <a href="about.html" class="btn-outline">了解更多</a>
+                        </div>
+                        <div class="about-image">
+                            <img src="img/C2_09005-1_1.jpg" alt="关于我">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 视频展示 -->
+        <section class="video-section">
+            <div class="container">
+                <div class="section-header">
+                    <h2>摄影视频</h2>
+                    <p class="section-subtitle">用动态影像展现壮丽风景的震撼瞬间</p>
+                </div>
+                <div class="video-grid">
+                    <div class="video-card">
+                        <div class="video-player">
+                            <iframe 
+                                src="https://player.bilibili.com/player.html?isOutside=true&aid=112965810522341&bvid=BV1kTebehEph&cid=500001650501630&p=1" 
+                                scrolling="no" 
+                                border="0" 
+                                frameborder="no" 
+                                framespacing="0" 
+                                allowfullscreen="true">
+                            </iframe>
+                        </div>
+                        <div class="video-meta">
+                            <div class="video-title">摄影作品展示</div>
+                            <div class="video-stats">
+                                <span class="video-views">👁 Bilibili</span>
+                                <span class="video-date">2024年</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="video-card">
+                        <div class="video-player">
+                            <iframe 
+                                src="https://player.bilibili.com/player.html?isOutside=true&aid=112965810456467&bvid=BV1pTebehExz&cid=500001650498686&p=1" 
+                                scrolling="no" 
+                                border="0" 
+                                frameborder="no" 
+                                framespacing="0" 
+                                allowfullscreen="true">
+                            </iframe>
+                        </div>
+                        <div class="video-meta">
+                            <div class="video-title">摄影作品展示</div>
+                            <div class="video-stats">
+                                <span class="video-views">👁 Bilibili</span>
+                                <span class="video-date">2024年</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="view-more">
+                    <a href="https://space.bilibili.com" target="_blank" class="btn-outline">前往Bilibili观看更多 →</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- 服务项目预览 -->
+        <section class="services-preview">
+            <div class="container">
+                <div class="section-header">
+                    <h2>服务项目</h2>
+                </div>
+                <div class="services-grid">
+                    <div class="service-card">
+                        <div class="service-icon">📸</div>
+                        <h3>风光摄影</h3>
+                        <p>自然风光、城市景观、航拍等专业拍摄服务</p>
+                    </div>
+                    <div class="service-card">
+                        <div class="service-icon">🎬</div>
+                        <h3>商业摄影</h3>
+                        <p>产品拍摄、企业宣传、活动记录等商业服务</p>
+                    </div>
+                    <div class="service-card">
+                        <div class="service-icon">✏️</div>
+                        <h3>后期制作</h3>
+                        <p>专业图片后期处理、调色、修图等服务</p>
+                    </div>
+                </div>
+                <div class="view-more">
+                    <a href="services.html" class="btn-outline">查看全部服务</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- 页脚 -->
+        <footer class="main-footer">
+            <div class="footer-container">
+                <div class="footer-content">
+                    <div class="footer-section">
+                        <h3>陈韬摄影</h3>
+                        <p>用镜头记录世界的美好</p>
+                    </div>
+                    <div class="footer-section">
+                        <h3>快速链接</h3>
+                        <ul>
+                            <li><a href="index.html">首页</a></li>
+                            <li><a href="about.html">关于我</a></li>
+                            <li><a href="portfolio.html">作品集</a></li>
+                            <li><a href="contact.html">联系我</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-section">
+                        <h3>社交媒体</h3>
+                        <div class="social-links">
+                            <a href="mailto:2011465544@qq.com" title="邮箱">📧</a>
+                            <a href="https://weibo.com" target="_blank" title="微博">📱</a>
+                            <a href="https://space.bilibili.com" target="_blank" title="Bilibili">📺</a>
+                            <a href="https://nanping20.fun" title="网站">🌐</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="footer-bottom">
+                    <p>&copy; 2024 陈韬摄影 | 学号：20230106105 | 姓名：陈韬 | <a href="https://nanping20.fun">当前域名</a></p>
+                </div>
+            </div>
+        </footer>
+    </div>
+    
+    <script src="script.js"></script>
+</body>
+</html>

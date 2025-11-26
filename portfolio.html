@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>作品集 - 陈韬摄影</title>
+    <link rel="icon" type="image/svg+xml" href="img/相机.svg">
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/gsap.min.js"></script>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- 导航栏 -->
+    <nav class="main-nav">
+        <div class="nav-container">
+            <div class="logo">
+                <a href="index.html">陈韬</a>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="index.html">首页</a></li>
+                <li>
+                    <div class="nav-dropdown">
+                        <a href="portfolio.html" class="dropdown-toggle active">作品集 <span class="dropdown-arrow">▼</span></a>
+                        <div class="dropdown-menu">
+                            <a href="portfolio.html?filter=landscape">风光</a>
+                            <a href="portfolio.html?filter=aerial">航拍</a>
+                            <a href="portfolio.html?filter=urban">城市</a>
+                            <a href="portfolio.html?filter=nature">自然</a>
+                        </div>
+                    </div>
+                </li>
+                <li><a href="blog.html">摄影动态</a></li>
+                <li><a href="about.html">关于我</a></li>
+                <li><a href="contact.html">联系我</a></li>
+            </ul>
+            <div class="menu-toggle">
+                <p id="menu-open">菜单</p>
+                <p id="menu-close">关闭</p>
+            </div>
+        </div>
+    </nav>
+
+    <!-- 菜单覆盖层 -->
+    <div class="menu-overlay">
+        <div class="menu-content">
+            <div class="menu-items">
+                <div class="col-lg">
+                    <div class="menu-preview-img">
+                        <img src="img/鼎湖1_1.jpg" alt="">
+                    </div>
+                </div>
+                <div class="col-sm">
+                    <div class="menu-links">
+                        <div class="link">
+                            <a href="services.html" data-img="img/7.25金象山.jpg">服务项目</a>
+                        </div>
+                        <div class="link">
+                            <a href="equipment.html" data-img="img/未标题-1_1.jpg">设备器材</a>
+                        </div>
+                        <div class="link"> 
+                            <a href="tips.html" data-img="img/AC200605-1_1.jpg">摄影技巧</a>
+                        </div>
+                        <div class="link"> 
+                            <a href="contact.html" data-img="img/AC208039_GFX100II-1_1.jpg">联系我</a>
+                        </div>
+                    </div>
+                    <div class="menu-socials">
+                        <div class="social">
+                            <a href="mailto:2011465544@qq.com">邮箱</a>
+                        </div>
+                        <div class="social">
+                            <a href="https://weibo.com" target="_blank">微博</a>
+                        </div>
+                        <div class="social">
+                            <a href="https://space.bilibili.com" target="_blank">Bilibili</a>
+                        </div>
+                        <div class="social">
+                            <a href="https://nanping20.fun">网站</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="menu-footer">
+                <div class="col-lg">
+                    <a href="index.html">陈韬摄影</a>
+                </div>
+                <div class="col-sm">
+                    <a href="index.html">© 20230106105 陈韬</a>
+                    <a href="https://nanping20.fun">当前域名</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 页面头部 -->
+    <div class="page-hero">
+        <div class="page-hero-image">
+            <img src="img/_DSC9674 全景小_1.jpg" alt="作品集">
+        </div>
+        <div class="page-hero-overlay"></div>
+        <h1>作品集</h1>
+    </div>
+
+    <!-- 内容区域 -->
+    <section class="content-section">
+        <div class="container">
+            <!-- 筛选按钮 -->
+            <div class="portfolio-filters">
+                <button class="filter-btn active" data-filter="all">全部</button>
+                <button class="filter-btn" data-filter="landscape">风光</button>
+                <button class="filter-btn" data-filter="aerial">航拍</button>
+                <button class="filter-btn" data-filter="urban">城市</button>
+                <button class="filter-btn" data-filter="nature">自然</button>
+            </div>
+
+            <!-- 作品网格 -->
+            <div class="portfolio-grid">
+                <div class="portfolio-item" data-category="landscape">
+                    <img src="img/鼎湖1_1.jpg" alt="自然风光">
+                    <div class="portfolio-overlay">
+                        <h3>自然风光</h3>
+                        <p>2024年10月</p>
+                    </div>
+                </div>
+                <div class="portfolio-item" data-category="aerial">
+                    <img src="img/DJI_2025R_1.jpg" alt="航拍视角">
+                    <div class="portfolio-overlay">
+                        <h3>航拍视角</h3>
+                        <p>2024年8月</p>
+                    </div>
+                </div>
+                <div class="portfolio-item" data-category="urban">
+                    <img src="img/C2_07541_1.jpg" alt="城市印象">
+                    <div class="portfolio-overlay">
+                        <h3>城市印象</h3>
+                        <p>2024年9月</p>
+                    </div>
+                </div>
+                <div class="portfolio-item" data-category="landscape">
+                    <img src="img/C2_09005-1_1.jpg" alt="光影艺术">
+                    <div class="portfolio-overlay">
+                        <h3>光影艺术</h3>
+                        <p>2024年7月</p>
+                    </div>
+                </div>
+                <div class="portfolio-item" data-category="landscape">
+                    <img src="img/_DSC9674 全景小_1.jpg" alt="全景风光">
+                    <div class="portfolio-overlay">
+                        <h3>全景风光</h3>
+                        <p>2024年6月</p>
+                    </div>
+                </div>
+                <div class="portfolio-item" data-category="aerial">
+                    <img src="img/DJI_0205-1_1.jpg" alt="航拍作品">
+                    <div class="portfolio-overlay">
+                        <h3>航拍作品</h3>
+                        <p>2024年5月</p>
+                    </div>
+                </div>
+                <div class="portfolio-item" data-category="nature">
+                    <img src="img/C2_08845_1.jpg" alt="自然之美">
+                    <div class="portfolio-overlay">
+                        <h3>自然之美</h3>
+                        <p>2024年4月</p>
+                    </div>
+                </div>
+                <div class="portfolio-item" data-category="aerial">
+                    <img src="img/DJI_0303-HDR-1_1.jpg" alt="航拍HDR">
+                    <div class="portfolio-overlay">
+                        <h3>航拍HDR</h3>
+                        <p>2024年3月</p>
+                    </div>
+                </div>
+                <div class="portfolio-item" data-category="landscape">
+                    <img src="img/C2_07797-HDR-1_1.jpg" alt="HDR风光">
+                    <div class="portfolio-overlay">
+                        <h3>HDR风光</h3>
+                        <p>2024年2月</p>
+                    </div>
+                </div>
+                <div class="portfolio-item" data-category="aerial">
+                    <img src="img/DJI_0148-HDR-1_1.jpg" alt="航拍HDR作品">
+                    <div class="portfolio-overlay">
+                        <h3>航拍HDR作品</h3>
+                        <p>2024年1月</p>
+                    </div>
+                </div>
+                <div class="portfolio-item" data-category="aerial">
+                    <img src="img/DJI_0148-HDR-1.jpg" alt="航拍作品">
+                    <div class="portfolio-overlay">
+                        <h3>航拍作品</h3>
+                        <p>2023年12月</p>
+                    </div>
+                </div>
+                <div class="portfolio-item" data-category="aerial">
+                    <img src="img/DJI_0947-1_1.jpg" alt="航拍视角">
+                    <div class="portfolio-overlay">
+                        <h3>航拍视角</h3>
+                        <p>2023年11月</p>
+                    </div>
+                </div>
+                <div class="portfolio-item" data-category="aerial">
+                    <img src="img/DJI_02051.jpg" alt="航拍风光">
+                    <div class="portfolio-overlay">
+                        <h3>航拍风光</h3>
+                        <p>2023年10月</p>
+                    </div>
+                </div>
+                <div class="portfolio-item" data-category="aerial">
+                    <img src="img/DJI_20250805105234_0228_D-HDR-1_1.jpg" alt="航拍HDR">
+                    <div class="portfolio-overlay">
+                        <h3>航拍HDR</h3>
+                        <p>2023年9月</p>
+                    </div>
+                </div>
+                <div class="portfolio-item" data-category="aerial">
+                    <img src="img/DJI_20250928093015_0348_D.jpg" alt="航拍作品">
+                    <div class="portfolio-overlay">
+                        <h3>航拍作品</h3>
+                        <p>2023年8月</p>
+                    </div>
+                </div>
+                <div class="portfolio-item" data-category="landscape">
+                    <img src="img/_DSC3602-Pano-编辑-编辑_1.jpg" alt="全景摄影">
+                    <div class="portfolio-overlay">
+                        <h3>全景摄影</h3>
+                        <p>2023年7月</p>
+                    </div>
+                </div>
+                <div class="portfolio-item" data-category="landscape">
+                    <img src="img/_DSC6945-2_1.jpg" alt="风光摄影">
+                    <div class="portfolio-overlay">
+                        <h3>风光摄影</h3>
+                        <p>2023年6月</p>
+                    </div>
+                </div>
+                <div class="portfolio-item" data-category="landscape">
+                    <img src="img/_C2_0015_1.jpg" alt="自然风光">
+                    <div class="portfolio-overlay">
+                        <h3>自然风光</h3>
+                        <p>2023年5月</p>
+                    </div>
+                </div>
+                <div class="portfolio-item" data-category="landscape">
+                    <img src="img/C2_05803-已增强-NR.jpg" alt="增强风光">
+                    <div class="portfolio-overlay">
+                        <h3>增强风光</h3>
+                        <p>2023年4月</p>
+                    </div>
+                </div>
+                <div class="portfolio-item" data-category="landscape">
+                    <img src="img/C2_06977.jpg" alt="风光作品">
+                    <div class="portfolio-overlay">
+                        <h3>风光作品</h3>
+                        <p>2023年3月</p>
+                    </div>
+                </div>
+                <div class="portfolio-item" data-category="landscape">
+                    <img src="img/PANO0001_2.jpg" alt="全景作品">
+                    <div class="portfolio-overlay">
+                        <h3>全景作品</h3>
+                        <p>2023年2月</p>
+                    </div>
+                </div>
+                <div class="portfolio-item" data-category="landscape">
+                    <img src="img/PANO0001-Pano-1-恢复的.jpg" alt="全景恢复">
+                    <div class="portfolio-overlay">
+                        <h3>全景恢复</h3>
+                        <p>2023年1月</p>
+                    </div>
+                </div>
+                <div class="portfolio-item" data-category="landscape">
+                    <img src="img/PANO0009-已增强-NR-Pano2.jpg" alt="增强全景">
+                    <div class="portfolio-overlay">
+                        <h3>增强全景</h3>
+                        <p>2022年12月</p>
+                    </div>
+                </div>
+            </div>
+            <div class="view-more" style="text-align: center; margin-top: 3em;">
+                <a href="index.html" class="btn-outline">返回首页</a>
+                <a href="about.html" class="btn-outline" style="margin-left: 1em;">关于我</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- 页脚 -->
+    <footer class="main-footer">
+        <div class="footer-container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>陈韬摄影</h3>
+                    <p>用镜头记录世界的美好</p>
+                </div>
+                <div class="footer-section">
+                    <h3>快速链接</h3>
+                    <ul>
+                        <li><a href="index.html">首页</a></li>
+                        <li><a href="about.html">关于我</a></li>
+                        <li><a href="portfolio.html">作品集</a></li>
+                        <li><a href="contact.html">联系我</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>社交媒体</h3>
+                    <div class="social-links">
+                        <a href="mailto:2011465544@qq.com" title="邮箱">📧</a>
+                        <a href="https://weibo.com" target="_blank" title="微博">📱</a>
+                        <a href="https://space.bilibili.com" target="_blank" title="Bilibili">📺</a>
+                        <a href="https://nanping20.fun" title="网站">🌐</a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 陈韬摄影 | 学号：20230106105 | 姓名：陈韬 | <a href="https://nanping20.fun">当前域名</a></p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

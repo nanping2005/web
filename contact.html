@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>联系我 - 陈韬摄影</title>
+    <link rel="icon" type="image/svg+xml" href="img/相机.svg">
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/gsap.min.js"></script>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- 导航栏 -->
+    <nav class="main-nav">
+        <div class="nav-container">
+            <div class="logo">
+                <a href="index.html">陈韬</a>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="index.html">首页</a></li>
+                <li>
+                    <div class="nav-dropdown">
+                        <a href="portfolio.html" class="dropdown-toggle">作品集 <span class="dropdown-arrow">▼</span></a>
+                        <div class="dropdown-menu">
+                            <a href="portfolio.html?filter=landscape">风光</a>
+                            <a href="portfolio.html?filter=aerial">航拍</a>
+                            <a href="portfolio.html?filter=urban">城市</a>
+                            <a href="portfolio.html?filter=nature">自然</a>
+                        </div>
+                    </div>
+                </li>
+                <li><a href="blog.html">摄影动态</a></li>
+                <li><a href="about.html">关于我</a></li>
+                <li><a href="contact.html" class="active">联系我</a></li>
+            </ul>
+            <div class="menu-toggle">
+                <p id="menu-open">菜单</p>
+                <p id="menu-close">关闭</p>
+            </div>
+        </div>
+    </nav>
+
+    <!-- 菜单覆盖层 -->
+    <div class="menu-overlay">
+        <div class="menu-content">
+            <div class="menu-items">
+                <div class="col-lg">
+                    <div class="menu-preview-img">
+                        <img src="img/鼎湖1_1.jpg" alt="">
+                    </div>
+                </div>
+                <div class="col-sm">
+                    <div class="menu-links">
+                        <div class="link">
+                            <a href="services.html" data-img="img/7.25金象山.jpg">服务项目</a>
+                        </div>
+                        <div class="link">
+                            <a href="equipment.html" data-img="img/未标题-1_1.jpg">设备器材</a>
+                        </div>
+                        <div class="link"> 
+                            <a href="tips.html" data-img="img/AC200605-1_1.jpg">摄影技巧</a>
+                        </div>
+                        <div class="link"> 
+                            <a href="contact.html" data-img="img/AC208039_GFX100II-1_1.jpg">联系我</a>
+                        </div>
+                    </div>
+                    <div class="menu-socials">
+                        <div class="social">
+                            <a href="mailto:2011465544@qq.com">邮箱</a>
+                        </div>
+                        <div class="social">
+                            <a href="https://weibo.com" target="_blank">微博</a>
+                        </div>
+                        <div class="social">
+                            <a href="https://space.bilibili.com" target="_blank">Bilibili</a>
+                        </div>
+                        <div class="social">
+                            <a href="https://nanping20.fun">网站</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="menu-footer">
+                <div class="col-lg">
+                    <a href="index.html">陈韬摄影</a>
+                </div>
+                <div class="col-sm">
+                    <a href="index.html">© 20230106105 陈韬</a>
+                    <a href="https://nanping20.fun">当前域名</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 页面头部 -->
+    <div class="page-hero">
+        <div class="page-hero-image">
+            <img src="img/_DSC9674 全景小_1.jpg" alt="联系我">
+        </div>
+        <div class="page-hero-overlay"></div>
+        <h1>联系我</h1>
+    </div>
+
+    <!-- 内容区域 -->
+    <section class="content-section">
+        <div class="container">
+            <div class="contact-wrapper">
+                <!-- 联系表单 -->
+                <div class="contact-form-section">
+                    <h2>发送消息</h2>
+                    <form class="contact-form" id="contactForm">
+                        <div class="form-group">
+                            <label for="name">姓名 <span class="required">*</span></label>
+                            <input type="text" id="name" name="name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">邮箱 <span class="required">*</span></label>
+                            <input type="email" id="email" name="email" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="subject">主题</label>
+                            <select id="subject" name="subject">
+                                <option value="photography">摄影服务咨询</option>
+                                <option value="commercial">商业合作</option>
+                                <option value="other">其他</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="message">消息内容 <span class="required">*</span></label>
+                            <textarea id="message" name="message" rows="6" required></textarea>
+                        </div>
+                        <button type="submit" class="btn-primary">发送消息</button>
+                        <div class="form-message" id="formMessage"></div>
+                    </form>
+                </div>
+
+                <!-- 联系信息 -->
+                <div class="contact-info-section">
+                    <h2>联系方式</h2>
+                    <div class="contact-info">
+                        <div class="info-item">
+                            <div class="info-icon">📧</div>
+                            <div class="info-content">
+                                <h3>邮箱</h3>
+                                <p><a href="mailto:2011465544@qq.com">2011465544@qq.com</a></p>
+                            </div>
+                        </div>
+                        <div class="info-item">
+                            <div class="info-icon">🌐</div>
+                            <div class="info-content">
+                                <h3>网站</h3>
+                                <p><a href="https://nanping20.fun" target="_blank">nanping20.fun</a></p>
+                            </div>
+                        </div>
+                        <div class="info-item">
+                            <div class="info-icon">📱</div>
+                            <div class="info-content">
+                                <h3>社交媒体</h3>
+                                <p>微博、Bilibili等平台</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="social-section">
+                        <h3>关注我</h3>
+                        <div class="social-links-large">
+                            <a href="mailto:2011465544@qq.com" class="social-link">
+                                <div class="social-icon">📧</div>
+                                <div>邮箱</div>
+                            </a>
+                            <a href="https://weibo.com" target="_blank" class="social-link">
+                                <div class="social-icon">📱</div>
+                                <div>微博</div>
+                            </a>
+                            <a href="https://space.bilibili.com" target="_blank" class="social-link">
+                                <div class="social-icon">📺</div>
+                                <div>Bilibili</div>
+                            </a>
+                            <a href="https://nanping20.fun" class="social-link" target="_blank">
+                                <div class="social-icon">🌐</div>
+                                <div>网站</div>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="view-more" style="text-align: center; margin-top: 3em;">
+                <a href="index.html" class="btn-outline">返回首页</a>
+                <a href="services.html" class="btn-outline" style="margin-left: 1em;">服务项目</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- 页脚 -->
+    <footer class="main-footer">
+        <div class="footer-container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>陈韬摄影</h3>
+                    <p>用镜头记录世界的美好</p>
+                </div>
+                <div class="footer-section">
+                    <h3>快速链接</h3>
+                    <ul>
+                        <li><a href="index.html">首页</a></li>
+                        <li><a href="about.html">关于我</a></li>
+                        <li><a href="portfolio.html">作品集</a></li>
+                        <li><a href="contact.html">联系我</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>社交媒体</h3>
+                    <div class="social-links">
+                        <a href="mailto:2011465544@qq.com" title="邮箱">📧</a>
+                        <a href="https://weibo.com" target="_blank" title="微博">📱</a>
+                        <a href="https://space.bilibili.com" target="_blank" title="Bilibili">📺</a>
+                        <a href="https://nanping20.fun" title="网站">🌐</a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 陈韬摄影 | 学号：20230106105 | 姓名：陈韬 | <a href="https://nanping20.fun">当前域名</a></p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+    <script>
+        // 联系表单处理
+        document.getElementById('contactForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const formMessage = document.getElementById('formMessage');
+            formMessage.textContent = '感谢您的消息！我会尽快回复您。';
+            formMessage.className = 'form-message success';
+            this.reset();
+        });
+    </script>
+</body>
+</html>
+
