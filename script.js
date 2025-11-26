@@ -439,6 +439,48 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 
+    /**
+     * 视频懒加载：默认静音，进入视口后再加载iframe以触发播放
+     */
+    function initVideoAutoplay() {
+        const videoIframes = document.querySelectorAll('.video-player iframe[data-src]');
+        if (!videoIframes.length) return;
+
+        const loadMutedVideo = (iframe) => {
+            if (iframe.dataset.loaded === 'true') return;
+            const baseUrl = iframe.dataset.src;
+            if (!baseUrl) return;
+
+            try {
+                const url = new URL(baseUrl, window.location.href);
+                url.searchParams.set('muted', '1');
+                url.searchParams.set('autoplay', '1');
+                iframe.src = url.toString();
+            } catch (err) {
+                // 回退：无法解析 URL 时直接拼接参数
+                const separator = baseUrl.includes('?') ? '&' : '?';
+                iframe.src = `${baseUrl}${separator}muted=1&autoplay=1`;
+            }
+            iframe.dataset.loaded = 'true';
+        };
+
+        if (!('IntersectionObserver' in window)) {
+            videoIframes.forEach(loadMutedVideo);
+            return;
+        }
+
+        const videoObserver = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    loadMutedVideo(entry.target);
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.5 });
+
+        videoIframes.forEach(iframe => videoObserver.observe(iframe));
+    }
+
     // 优先选择横屏图片作为背景
     function checkImageOrientation(img) {
         return new Promise((resolve) => {
@@ -523,10 +565,9 @@ document.addEventListener("DOMContentLoaded", () => {
     // 为英雄区域背景选择横屏图片
     selectLandscapeBackground('.hero-image');
 
-    // 视频卡片现在使用iframe，不需要额外的点击处理
-    // iframe会自动处理视频播放
-
     loadScrollTrigger()
         .then(() => initScrollAnimations())
         .catch((err) => console.warn(err.message));
+
+    initVideoAutoplay();
 });
