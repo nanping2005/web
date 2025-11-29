@@ -176,7 +176,7 @@ document.addEventListener("DOMContentLoaded", () => {
         if (!menuPreviewImg) return;
         menuPreviewImg.innerHTML = "";
         const defaultPreviewImg = document.createElement("img");
-        defaultPreviewImg.src = "img/鼎湖1.jpg";
+        defaultPreviewImg.src = "img/slider_img_27.jpg";
         menuPreviewImg.appendChild(defaultPreviewImg);
     }
 
@@ -439,6 +439,48 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 
+    /**
+     * 视频懒加载：默认静音，进入视口后再加载iframe以触发播放
+     */
+    function initVideoAutoplay() {
+        const videoIframes = document.querySelectorAll('.video-player iframe[data-src]');
+        if (!videoIframes.length) return;
+
+        const loadMutedVideo = (iframe) => {
+            if (iframe.dataset.loaded === 'true') return;
+            const baseUrl = iframe.dataset.src;
+            if (!baseUrl) return;
+
+            try {
+                const url = new URL(baseUrl, window.location.href);
+                url.searchParams.set('muted', '1');
+                url.searchParams.set('autoplay', '1');
+                iframe.src = url.toString();
+            } catch (err) {
+                // 回退：无法解析 URL 时直接拼接参数
+                const separator = baseUrl.includes('?') ? '&' : '?';
+                iframe.src = `${baseUrl}${separator}muted=1&autoplay=1`;
+            }
+            iframe.dataset.loaded = 'true';
+        };
+
+        if (!('IntersectionObserver' in window)) {
+            videoIframes.forEach(loadMutedVideo);
+            return;
+        }
+
+        const videoObserver = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    loadMutedVideo(entry.target);
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.5 });
+
+        videoIframes.forEach(iframe => videoObserver.observe(iframe));
+    }
+
     // 优先选择横屏图片作为背景
     function checkImageOrientation(img) {
         return new Promise((resolve) => {
@@ -480,20 +522,20 @@ document.addEventListener("DOMContentLoaded", () => {
             // 如果不是横屏，尝试从已知的横屏图片中选择
             // 根据文件名和常见横屏图片特征，优先选择这些图片
             const landscapeImages = [
-                'img/_DSC9674 全景小.jpg',
-                'img/_DSC3602-Pano-编辑-编辑.jpg',
-                'img/DJI_2025R.jpg',
-                'img/DJI_0205-1.jpg',
-                'img/DJI_0303-HDR-1.jpg',
-                'img/DJI_0337-HDR-1.jpg',
-                'img/DJI_0947-1.jpg',
-                'img/C2_07541.jpg',
-                'img/C2_07543.jpg',
-                'img/C2_07797-HDR-1.jpg',
-                'img/7.25金象山2.jpg',
-                'img/AC200605-1.jpg',
-                'img/AC205440-HDR.jpg',
-                'img/AC208039_GFX100II-1.jpg'
+                'img/slider_img_4.jpg',
+                'img/slider_img_2.jpg',
+                'img/slider_img_22.jpg',
+                'img/slider_img_16.jpg',
+                'img/slider_img_18.jpg',
+                'img/slider_img_14.jpg',
+                'img/slider_img_19.jpg',
+                'img/slider_img_10.jpg',
+                'img/slider_img_8.jpg',
+                'img/slider_img_11.jpg',
+                'img/slider_img_5.jpg',
+                'img/slider_img_6.jpg',
+                'img/slider_img_20.jpg',
+                'img/slider_img_7.jpg'
             ];
 
             // 尝试加载第一个横屏图片（通常全景和DJI开头的图片是横屏）
@@ -523,10 +565,9 @@ document.addEventListener("DOMContentLoaded", () => {
     // 为英雄区域背景选择横屏图片
     selectLandscapeBackground('.hero-image');
 
-    // 视频卡片现在使用iframe，不需要额外的点击处理
-    // iframe会自动处理视频播放
-
     loadScrollTrigger()
         .then(() => initScrollAnimations())
         .catch((err) => console.warn(err.message));
+
+    initVideoAutoplay();
 });
