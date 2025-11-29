@@ -1,4 +1,9 @@
 document.addEventListener("DOMContentLoaded", () => {
+    // 注册 GSAP 插件
+    if (window.gsap && window.ScrollTrigger) {
+        gsap.registerPlugin(ScrollTrigger);
+    }
+
     const container = document.querySelector(".container");
     const menuToggle = document.querySelector(".menu-toggle");
     const menuOverlay = document.querySelector(".menu-overlay");
@@ -7,29 +12,10 @@ document.addEventListener("DOMContentLoaded", () => {
     const menuLinks = document.querySelectorAll(".link a");
 
     /**
-     * 异步加载 ScrollTrigger 插件，便于所有页面复用。
-     */
-    function loadScrollTrigger() {
-        return new Promise((resolve, reject) => {
-            if (window.ScrollTrigger) {
-                resolve();
-                return;
-            }
-            const script = document.createElement("script");
-            script.src = "https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js";
-            script.async = true;
-            script.onload = () => resolve();
-            script.onerror = () => reject(new Error("ScrollTrigger load failed"));
-            document.head.appendChild(script);
-        });
-    }
-
-    /**
      * 初始化滚动动画，参考 GSAP 每日最佳网站的动态效果
      */
     function initScrollAnimations() {
         if (!window.ScrollTrigger) return;
-        gsap.registerPlugin(ScrollTrigger);
 
         const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
         if (prefersReducedMotion) return;
@@ -565,9 +551,8 @@ document.addEventListener("DOMContentLoaded", () => {
     // 为英雄区域背景选择横屏图片
     selectLandscapeBackground('.hero-image');
 
-    loadScrollTrigger()
-        .then(() => initScrollAnimations())
-        .catch((err) => console.warn(err.message));
+    // 初始化滚动动画
+    initScrollAnimations();
 
     initVideoAutoplay();
 
@@ -782,23 +767,8 @@ document.addEventListener("DOMContentLoaded", () => {
             );
         }
 
-        function loadSplitTextPlugin() {
-            return new Promise((resolve) => {
-                if (window.SplitText) {
-                    resolve();
-                    return;
-                }
-                const script = document.createElement("script");
-                script.src = "https://assets.codepen.io/16327/SplitText3.min.js";
-                script.async = true;
-                script.onload = () => resolve();
-                document.head.appendChild(script);
-            });
-        }
-
-        loadSplitTextPlugin().then(() => {
-            initializePureSlider();
-            bindPureSliderEvents();
-        });
+        // 初始化纯享滑块
+        initializePureSlider();
+        bindPureSliderEvents();
     }
 });
