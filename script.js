@@ -176,7 +176,7 @@ document.addEventListener("DOMContentLoaded", () => {
         if (!menuPreviewImg) return;
         menuPreviewImg.innerHTML = "";
         const defaultPreviewImg = document.createElement("img");
-        defaultPreviewImg.src = "img/鼎湖1.jpg";
+        defaultPreviewImg.src = "img/slider_img_27.jpg";
         menuPreviewImg.appendChild(defaultPreviewImg);
     }
 
@@ -439,6 +439,48 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 
+    /**
+     * 视频懒加载：默认静音，进入视口后再加载iframe以触发播放
+     */
+    function initVideoAutoplay() {
+        const videoIframes = document.querySelectorAll('.video-player iframe[data-src]');
+        if (!videoIframes.length) return;
+
+        const loadMutedVideo = (iframe) => {
+            if (iframe.dataset.loaded === 'true') return;
+            const baseUrl = iframe.dataset.src;
+            if (!baseUrl) return;
+
+            try {
+                const url = new URL(baseUrl, window.location.href);
+                url.searchParams.set('muted', '1');
+                url.searchParams.set('autoplay', '1');
+                iframe.src = url.toString();
+            } catch (err) {
+                // 回退：无法解析 URL 时直接拼接参数
+                const separator = baseUrl.includes('?') ? '&' : '?';
+                iframe.src = `${baseUrl}${separator}muted=1&autoplay=1`;
+            }
+            iframe.dataset.loaded = 'true';
+        };
+
+        if (!('IntersectionObserver' in window)) {
+            videoIframes.forEach(loadMutedVideo);
+            return;
+        }
+
+        const videoObserver = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    loadMutedVideo(entry.target);
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.5 });
+
+        videoIframes.forEach(iframe => videoObserver.observe(iframe));
+    }
+
     // 优先选择横屏图片作为背景
     function checkImageOrientation(img) {
         return new Promise((resolve) => {
@@ -480,20 +522,20 @@ document.addEventListener("DOMContentLoaded", () => {
             // 如果不是横屏，尝试从已知的横屏图片中选择
             // 根据文件名和常见横屏图片特征，优先选择这些图片
             const landscapeImages = [
-                'img/_DSC9674 全景小.jpg',
-                'img/_DSC3602-Pano-编辑-编辑.jpg',
-                'img/DJI_2025R.jpg',
-                'img/DJI_0205-1.jpg',
-                'img/DJI_0303-HDR-1.jpg',
-                'img/DJI_0337-HDR-1.jpg',
-                'img/DJI_0947-1.jpg',
-                'img/C2_07541.jpg',
-                'img/C2_07543.jpg',
-                'img/C2_07797-HDR-1.jpg',
-                'img/7.25金象山2.jpg',
-                'img/AC200605-1.jpg',
-                'img/AC205440-HDR.jpg',
-                'img/AC208039_GFX100II-1.jpg'
+                'img/slider_img_4.jpg',
+                'img/slider_img_2.jpg',
+                'img/slider_img_22.jpg',
+                'img/slider_img_16.jpg',
+                'img/slider_img_18.jpg',
+                'img/slider_img_14.jpg',
+                'img/slider_img_19.jpg',
+                'img/slider_img_10.jpg',
+                'img/slider_img_8.jpg',
+                'img/slider_img_11.jpg',
+                'img/slider_img_5.jpg',
+                'img/slider_img_6.jpg',
+                'img/slider_img_20.jpg',
+                'img/slider_img_7.jpg'
             ];
 
             // 尝试加载第一个横屏图片（通常全景和DJI开头的图片是横屏）
@@ -523,10 +565,240 @@ document.addEventListener("DOMContentLoaded", () => {
     // 为英雄区域背景选择横屏图片
     selectLandscapeBackground('.hero-image');
 
-    // 视频卡片现在使用iframe，不需要额外的点击处理
-    // iframe会自动处理视频播放
-
     loadScrollTrigger()
         .then(() => initScrollAnimations())
         .catch((err) => console.warn(err.message));
+
+    initVideoAutoplay();
+
+    /**
+     * 纯享滚动滑块 - 模仿 T3 动画
+     * 仅在首页存在 .pure-slider-container 时初始化
+     */
+    const pureSliderContainer = document.querySelector(".pure-slider-container");
+    const pureSliderRoot = document.querySelector(".pure-slider");
+
+    if (pureSliderContainer && pureSliderRoot && window.gsap) {
+        // 纯享滑块的标题文案，使用中文氛围感文案
+        const slideData = [
+            { title: "", image: "img/slider_img_1.jpg" },
+            { title: "", image: "img/slider_img_2.jpg" },
+            { title: "", image: "img/slider_img_3.jpg" },
+            { title: "", image: "img/slider_img_4.jpg" },
+            { title: "", image: "img/slider_img_6.jpg" }
+        ];
+
+        let frontSlideIndex = 0;
+        let isSliderAnimating = false;
+        let wheelAccumulator = 0;
+        const wheelThreshold = 100;
+        let isWheelActive = false;
+
+        let touchStartY = 0;
+        let touchStartX = 0;
+        let isTouchActive = false;
+        const touchThreshold = 50;
+
+        function initializePureSlider() {
+            // 创建初始 5 张卡片
+            slideData.forEach((data) => {
+                const slide = document.createElement("div");
+                slide.className = "pure-slide";
+                slide.innerHTML = `
+        <img src="${data.image}" alt="" class="pure-slide-image" />
+      `;
+                pureSliderRoot.appendChild(slide);
+            });
+
+            const slides = pureSliderRoot.querySelectorAll(".pure-slide");
+            slides.forEach((slide, i) => {
+                gsap.set(slide, {
+                    y: -15 + 15 * i + "%",
+                    z: 15 * i,
+                    opacity: 1,
+                });
+            });
+        }
+
+        function handlePureSlideChange(direction = "down") {
+            if (isSliderAnimating) return;
+            isSliderAnimating = true;
+
+            if (direction === "down") {
+                handleScrollDown();
+            } else {
+                handleScrollUp();
+            }
+        }
+
+        function handleScrollDown() {
+            const slides = pureSliderRoot.querySelectorAll(".pure-slide");
+            const firstSlide = slides[0];
+
+            frontSlideIndex = (frontSlideIndex + 1) % slideData.length;
+            const newBackIndex = (frontSlideIndex + 4) % slideData.length;
+            const nextSlideData = slideData[newBackIndex];
+
+            const newSlide = document.createElement("div");
+            newSlide.className = "pure-slide";
+            newSlide.innerHTML = `
+      <img src="${nextSlideData.image}" alt="" class="pure-slide-image" />
+    `;
+
+            pureSliderRoot.appendChild(newSlide);
+
+            gsap.set(newSlide, {
+                y: -15 + 15 * 5 + "%",
+                z: 15 * 5,
+                opacity: 0,
+            });
+
+            const allSlides = pureSliderRoot.querySelectorAll(".pure-slide");
+
+            allSlides.forEach((slide, i) => {
+                const targetPosition = i - 1;
+
+                gsap.to(slide, {
+                    y: -15 + 15 * targetPosition + "%",
+                    z: 15 * targetPosition,
+                    opacity: targetPosition < 0 ? 0 : 1,
+                    duration: 1,
+                    ease: "power3.inOut",
+                    onComplete: () => {
+                        if (i === 0 && firstSlide.parentNode) {
+                            firstSlide.remove();
+                            isSliderAnimating = false;
+                        }
+                    },
+                });
+            });
+
+        }
+
+        function handleScrollUp() {
+            const slides = pureSliderRoot.querySelectorAll(".pure-slide");
+            const lastSlide = slides[slides.length - 1];
+
+            frontSlideIndex =
+                (frontSlideIndex - 1 + slideData.length) % slideData.length;
+            const prevSlideData = slideData[frontSlideIndex];
+
+            const newSlide = document.createElement("div");
+            newSlide.className = "pure-slide";
+            newSlide.innerHTML = `
+      <img src="${prevSlideData.image}" alt="" class="pure-slide-image" />
+    `;
+
+            pureSliderRoot.prepend(newSlide);
+
+            gsap.set(newSlide, {
+                y: -15 + 15 * -1 + "%",
+                z: 15 * -1,
+                opacity: 0,
+            });
+
+            const slideQueue = Array.from(
+                pureSliderRoot.querySelectorAll(".pure-slide")
+            );
+            slideQueue.forEach((slide, i) => {
+                const targetPosition = i;
+
+                gsap.to(slide, {
+                    y: -15 + 15 * targetPosition + "%",
+                    z: 15 * targetPosition,
+                    opacity: targetPosition > 4 ? 0 : 1,
+                    duration: 1,
+                    ease: "power3.inOut",
+                    onComplete: () => {
+                        if (i === slideQueue.length - 1 && lastSlide.parentNode) {
+                            lastSlide.remove();
+                            isSliderAnimating = false;
+                        }
+                    },
+                });
+            });
+        }
+
+        function bindPureSliderEvents() {
+            // 鼠标滚轮
+            pureSliderContainer.addEventListener(
+                "wheel",
+                (e) => {
+                    e.preventDefault();
+
+                    if (isSliderAnimating || isWheelActive) return;
+
+                    wheelAccumulator += Math.abs(e.deltaY);
+
+                    if (wheelAccumulator >= wheelThreshold) {
+                        isWheelActive = true;
+                        wheelAccumulator = 0;
+
+                        const direction = e.deltaY > 0 ? "down" : "up";
+                        handlePureSlideChange(direction);
+
+                        setTimeout(() => {
+                            isWheelActive = false;
+                        }, 1200);
+                    }
+                },
+                { passive: false }
+            );
+
+            // 触摸滑动（移动端）
+            pureSliderContainer.addEventListener(
+                "touchstart",
+                (e) => {
+                    if (!e.touches || !e.touches.length) return;
+                    const touch = e.touches[0];
+                    touchStartY = touch.clientY;
+                    touchStartX = touch.clientX;
+                },
+                { passive: true }
+            );
+
+            pureSliderContainer.addEventListener(
+                "touchend",
+                (e) => {
+                    if (isSliderAnimating || isTouchActive) return;
+
+                    const touchEndY = e.changedTouches[0].clientY;
+                    const touchEndX = e.changedTouches[0].clientX;
+                    const deltaY = touchStartY - touchEndY;
+                    const deltaX = Math.abs(touchStartX - touchEndX);
+
+                    if (Math.abs(deltaY) > deltaX && Math.abs(deltaY) > touchThreshold) {
+                        isTouchActive = true;
+
+                        const direction = deltaY > 0 ? "down" : "up";
+                        handlePureSlideChange(direction);
+
+                        setTimeout(() => {
+                            isTouchActive = false;
+                        }, 1200);
+                    }
+                },
+                { passive: true }
+            );
+        }
+
+        function loadSplitTextPlugin() {
+            return new Promise((resolve) => {
+                if (window.SplitText) {
+                    resolve();
+                    return;
+                }
+                const script = document.createElement("script");
+                script.src = "https://assets.codepen.io/16327/SplitText3.min.js";
+                script.async = true;
+                script.onload = () => resolve();
+                document.head.appendChild(script);
+            });
+        }
+
+        loadSplitTextPlugin().then(() => {
+            initializePureSlider();
+            bindPureSliderEvents();
+        });
+    }
 });
