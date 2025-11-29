@@ -16,7 +16,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 return;
             }
             const script = document.createElement("script");
-            script.src = "https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/ScrollTrigger.min.js";
+            script.src = "https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js";
             script.async = true;
             script.onload = () => resolve();
             script.onerror = () => reject(new Error("ScrollTrigger load failed"));
