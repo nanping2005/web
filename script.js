@@ -555,6 +555,8 @@ document.addEventListener("DOMContentLoaded", () => {
     initScrollAnimations();
 
     initVideoAutoplay();
+<<<<<<< HEAD
+=======
 
     /**
      * 纯享滚动滑块 - 模仿 T3 动画
@@ -771,4 +773,5 @@ document.addEventListener("DOMContentLoaded", () => {
         initializePureSlider();
         bindPureSliderEvents();
     }
+>>>>>>> 06cc33c3470b8454c7ade2f24b8cd3ec47d11b10
 });
